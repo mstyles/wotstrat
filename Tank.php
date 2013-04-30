@@ -142,6 +142,21 @@ class Tank
         ";
         return $sql;
     }
+
+    function getJsonData(){
+        unset($this->gun_names);
+        $vars = get_object_vars($this);
+        foreach($vars as &$var){
+            if(is_array($var)){
+                foreach ($var as &$array_var){
+                    if(is_object($array_var) && method_exists($array_var,'getJsonData')){
+                        $array_var = $array_var->getJsonData();
+                    }
+                }
+            }
+        }
+        return $vars;
+     }
     
     function toJson()
     {

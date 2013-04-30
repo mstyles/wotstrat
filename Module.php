@@ -19,7 +19,11 @@ class Module
             }
         }
     }
-    
+
+    function getJsonData(){
+        return get_object_vars($this);
+     }
+
     function getTier()
     {
         return $this->tier;

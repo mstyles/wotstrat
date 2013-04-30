@@ -82,12 +82,7 @@ class Gun extends Module
         ";
         return $sql;
     }
-    
-    function toJson()
-    {
-        json_encode($this);
-    }
-    
+
     function getAmmo()
     {
         return $this->ammo;

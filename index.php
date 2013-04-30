@@ -23,6 +23,7 @@
         <select type='select' id='picker_tank_2'>
             <option value='1'>test</option>
         </select>
+        <input type="text" id='tank_id' />
         <input type='button' id='load_tank' value='load a tank' />
         <div id='tank_1' class='tank_box'></div>
         <br>
@@ -79,16 +80,16 @@
             <tr id="row_rate_of_fire">
                 <th>Rate of Fire</th>
             </tr>
-            <tr id="row_ap_pen">
+            <tr id="row_pen_ap">
                 <th>AP Pen</th>
             </tr>
-            <tr id="row_ap_dmg">
+            <tr id="row_dmg_ap">
                 <th>AP Damage</th>
             </tr>
-            <tr id="row_he_pen">
+            <tr id="row_pen_he">
                 <th>HE Pen</th>
             </tr>
-            <tr id="row_he_dmg">
+            <tr id="row_dmg_he">
                 <th>HE Damage</th>
             </tr>
             <tr id="row_accuracy">

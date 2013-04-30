@@ -18,40 +18,13 @@ function loadTank($tank_id)
         SELECT
             t.*
         FROM tanks t
-        WHERE t.id = 20
+        WHERE t.id = $tank_id
     ";
     
     $result = query($sql);
     $tank = new Tank($result);
-    //utf8_encode_deep($tank);
-    var_dump($tank);
-    echo '<br> JSON: <br>';
-    echo $tank->toJson();
-    echo '<br><br><br>';
     $tank->loadModules();
-    $tank_guns = $tank->getGuns();
-    var_dump($tank_guns[0]);
-    echo '<br><br><br>';
-    //echo $tank_guns[0]->toJson();
-    echo json_encode($tank_guns[0]);
-}
-
-function utf8_encode_deep(&$input) {
-    if (is_string($input)) {
-        $input = utf8_encode($input);
-    } else if (is_array($input)) {
-        foreach ($input as &$value) {
-            utf8_encode_deep($value);
-        }
-
-        unset($value);
-    } else if (is_object($input)) {
-        $vars = array_keys(get_object_vars($input));
-
-        foreach ($vars as $var) {
-            utf8_encode_deep($input->$var);
-        }
-    }
+    echo json_encode($tank->getJsonData());
 }
 
 function query($sql)
