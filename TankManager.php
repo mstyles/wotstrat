@@ -2,16 +2,6 @@
 mysql_connect("localhost", "wot_admin", "poop");
 mysql_select_db("wot_data");
 
-$req = $_REQUEST;
-
-switch($req['action']){
-    case 'loadTank':
-        loadTank($req['tank_id']);
-        break;
-    default:
-        echo 'Unrecognized action';
-}
-
 function loadTank($tank_id)
 {
     $sql = "
@@ -25,6 +15,28 @@ function loadTank($tank_id)
     $tank = new Tank($result);
     $tank->loadModules();
     echo json_encode($tank->getJsonData());
+}
+
+function getTankOptions()
+{
+    $sql = "SELECT id, name FROM tanks";
+    $results = queryAll($sql);
+}
+
+function queryAll($sql)
+{
+    $result = mysql_query($sql);
+    if (!$result){
+        echo mysql_error();
+        echo $sql;
+        exit();
+    } else {
+        $results = array();
+        while($row = mysql_fetch_array($result)){
+            $results[] = $row;
+        }
+        return $results;
+    }
 }
 
 function query($sql)

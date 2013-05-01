@@ -17,14 +17,24 @@
     <body>
         <h2>Tank vs Tank</h2>
         <p id='loading'>Processing...</p>
-        <select id='picker_tank_1'>
-            <option value='1'>test</option>
-        </select>
-        <select type='select' id='picker_tank_2'>
-            <option value='1'>test</option>
-        </select>
-        <input type="text" id='tank_id' />
-        <input type='button' id='load_tank' value='load a tank' />
+        <input type="text" class='tank_id' />
+        <br>
+        <input type="radio" class="tank_filter" name="filter_nation" value='usa'>USA
+        <input type="radio" class="tank_filter" name="filter_nation" value='germany'>Germany
+        <input type="radio" class="tank_filter" name="filter_nation" value='russia'>Russia
+        <br>
+        <input type="radio" class="tank_filter" name="filter_tier" value='5'>5
+        <input type="radio" class="tank_filter" name="filter_tier" value='6'>6
+        <input type="radio" class="tank_filter" name="filter_tier" value='7'>7
+        <br>
+        <input type="radio" class="tank_filter" name="filter_class" value='light'>Light
+        <input type="radio" class="tank_filter" name="filter_class" value='td'>TD
+        <input type="radio" class="tank_filter" name="filter_class" value='heavy'>Heavy
+        <select id="tank_select"></select>
+        <div>
+            <input type='button' class='load_tank' value='Load Tank' />
+            <input type='button' class='load_tank' value='Load Tank' />
+        </div>
         <div id='tank_1' class='tank_box'></div>
         <br>
         <table id='comparison_table' border="1">
