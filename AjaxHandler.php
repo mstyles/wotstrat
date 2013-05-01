@@ -8,7 +8,7 @@ switch($req['action']){
         loadTank($req['tank_id']);
         break;
     case 'getTankOptions':
-        getTankOptions($req['tank_id']);
+        getTankOptions();
         break;
     default:
         echo 'Unrecognized action';

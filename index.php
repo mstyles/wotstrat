@@ -8,32 +8,51 @@
             }
             #comparison_table{
                 border-collapse: collapse;
-            }
-            #comparison_table{
                 text-align: center;
+            }
+            #comparison_table td{
+                min-width: 150px;
             }
         </style>
     </head>
     <body>
         <h2>Tank vs Tank</h2>
         <p id='loading'>Processing...</p>
-        <input type="text" class='tank_id' />
+        <span>Enter tank id manually: </span><input type="text" class='tank_id' />
+        <br>
+        <span>Or use the filters: </span>
         <br>
         <input type="radio" class="tank_filter" name="filter_nation" value='usa'>USA
         <input type="radio" class="tank_filter" name="filter_nation" value='germany'>Germany
-        <input type="radio" class="tank_filter" name="filter_nation" value='russia'>Russia
+        <input type="radio" class="tank_filter" name="filter_nation" value='ussr'>Russia
+        <input type="radio" class="tank_filter" name="filter_nation" value='france'>France
+        <input type="radio" class="tank_filter" name="filter_nation" value='china'>China
+        <input type="radio" class="tank_filter" name="filter_nation" value='uk'>UK
+        <input type="button" id="filter_nation_clear" value="Clear" />
         <br>
+        <input type="radio" class="tank_filter" name="filter_tier" value='1'>1
+        <input type="radio" class="tank_filter" name="filter_tier" value='2'>2
+        <input type="radio" class="tank_filter" name="filter_tier" value='3'>3
+        <input type="radio" class="tank_filter" name="filter_tier" value='4'>4
         <input type="radio" class="tank_filter" name="filter_tier" value='5'>5
         <input type="radio" class="tank_filter" name="filter_tier" value='6'>6
         <input type="radio" class="tank_filter" name="filter_tier" value='7'>7
+        <input type="radio" class="tank_filter" name="filter_tier" value='8'>8
+        <input type="radio" class="tank_filter" name="filter_tier" value='9'>9
+        <input type="radio" class="tank_filter" name="filter_tier" value='10'>10
+        <input type="button" id="filter_tier_clear" value="Clear" />
         <br>
         <input type="radio" class="tank_filter" name="filter_class" value='light'>Light
-        <input type="radio" class="tank_filter" name="filter_class" value='td'>TD
+        <input type="radio" class="tank_filter" name="filter_class" value='medium'>Medium
         <input type="radio" class="tank_filter" name="filter_class" value='heavy'>Heavy
+        <input type="radio" class="tank_filter" name="filter_class" value='td'>TD
+        <input type="radio" class="tank_filter" name="filter_class" value='spg'>SPG
+        <input type="button" id="filter_class_clear" value="Clear" />
+        <br>
         <select id="tank_select"></select>
         <div>
-            <input type='button' class='load_tank' value='Load Tank' />
-            <input type='button' class='load_tank' value='Load Tank' />
+            <input type='button' class='load_tank' value='Load Tank 1' />
+            <input type='button' class='load_tank' value='Load Tank 2' />
         </div>
         <div id='tank_1' class='tank_box'></div>
         <br>

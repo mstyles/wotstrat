@@ -129,6 +129,32 @@ appendColumn = function()
     column_count++;
 }
 
+submitFilters = function()
+{
+    var tank_select = $('#tank_select');
+    tank_select.html('');
+    var filter_nation = $('input[name=filter_nation]:checked').val();
+    var filter_class = $('input[name=filter_class]:checked').val();
+    var filter_tier = $('input[name=filter_tier]:checked').val();
+    var data = {
+        'action' : 'getTankOptions',
+        'nation' : filter_nation,
+        'class'  : filter_class,
+        'tier'   : filter_tier
+    }
+    $.post('AjaxHandler.php', data, function(options){
+        console.log(options);
+        options = JSON.parse(options);
+
+        $.each(options, function(index, item){
+            tank_select.append($('<option></option>')
+                .attr('value', item['id'])
+                .text(item['name']));
+
+        });
+    });
+}
+
 $(function(){
     appendColumn();
     appendColumn();
@@ -149,8 +175,10 @@ $(function(){
     $('.load_tank').on('click', function(){
         var id;
         tank_num = $(this).index();
-        if($('#tank_id').val()){
-            id = $('#tank_id').val();
+        if($('.tank_id').val()){
+            id = $('.tank_id').val();
+        } else if ($('#tank_select').val()){
+            id = $('#tank_select').val();
         } else {
             id = Math.floor(Math.random()*290);
         }
@@ -161,18 +189,22 @@ $(function(){
         });
     })
 
-//    $.('.tank_filter').on('click', function(){
-//        var filter_nation = $('input[name=filter_nation]:checked').val();
-//        var filter_class = $('input[name=filter_class]:checked').val();
-//        var filter_tier = $('input[name=filter_tier]:checked').val();
-//        var data = {
-//            'action' : 'getTankOptions',
-//            'nation' : filter_nation,
-//            'class'  : filter_class,
-//            'tier'   : filter_tier
-//        }
-//        $.post('AjaxHandler.php', data, function(data, status, jq){
-//
-//        });
-//    })
+    $('.tank_filter').on('click', function(){
+        submitFilters();
+    })
+
+    $('#filter_nation_clear').on('click', function(){
+        $('input[name=filter_nation]:checked').prop('checked', false);
+        submitFilters();
+    })
+
+    $('#filter_tier_clear').on('click', function(){
+        $('input[name=filter_tier]:checked').prop('checked', false);
+        submitFilters();
+    })
+
+    $('#filter_class_clear').on('click', function(){
+        $('input[name=filter_class]:checked').prop('checked', false);
+        submitFilters();
+    })
 });

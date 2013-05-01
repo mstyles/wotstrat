@@ -19,8 +19,21 @@ function loadTank($tank_id)
 
 function getTankOptions()
 {
-    $sql = "SELECT id, name FROM tanks";
+    $where_clauses = array();
+    if(isset($_REQUEST['nation'])){
+        $where_clauses[] = "nation = '{$_REQUEST['nation']}'";
+    }
+    if(isset($_REQUEST['class'])){
+        $where_clauses[] = "class = '{$_REQUEST['class']}'";
+    }
+    if(isset($_REQUEST['tier'])){
+        $where_clauses[] = "tier = '{$_REQUEST['tier']}'";
+    }
+    $where = implode(' AND ', $where_clauses);
+    $where = 'WHERE '.$where;
+    $sql = "SELECT id, name FROM tanks ".$where;
     $results = queryAll($sql);
+    echo json_encode($results);
 }
 
 function queryAll($sql)
@@ -32,7 +45,7 @@ function queryAll($sql)
         exit();
     } else {
         $results = array();
-        while($row = mysql_fetch_array($result)){
+        while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
             $results[] = $row;
         }
         return $results;
