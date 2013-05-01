@@ -20,6 +20,8 @@ compareStats = function(row)
             $(this).css('color', 'green');
         } else if ($(this).text() == min_value){
             $(this).css('color', 'red');
+        } else {
+            $(this).css('color', 'black');
         }
     });
 }
@@ -172,7 +174,7 @@ $(function(){
         });
     })
     
-    $('.load_tank').on('click', function(){
+    $('body').on('click', '.load_tank', function(){
         var id;
         tank_num = $(this).index();
         if($('.tank_id').val()){
@@ -187,6 +189,13 @@ $(function(){
            loadTankStats(tank_data);
            compareAll();
         });
+    })
+
+    $('#add_tank').on('click', function(){
+        var num = column_count + 1;
+        $('#button_container').append('<input type="button" class="load_tank" value="Load Tank '+num+'" />');
+        appendColumn();
+        if(column_count === 6) $(this).hide();
     })
 
     $('.tank_filter').on('click', function(){

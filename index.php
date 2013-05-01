@@ -50,10 +50,12 @@
         <input type="button" id="filter_class_clear" value="Clear" />
         <br>
         <select id="tank_select"></select>
-        <div>
+        <div id='button_container'>
             <input type='button' class='load_tank' value='Load Tank 1' />
             <input type='button' class='load_tank' value='Load Tank 2' />
+            
         </div>
+        <input type='button' id='add_tank' value='Add Tank' />
         <div id='tank_1' class='tank_box'></div>
         <br>
         <table id='comparison_table' border="1">
