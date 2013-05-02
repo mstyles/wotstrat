@@ -1,6 +1,10 @@
 var timer = 0;
 var column_count = 0;
 var tank_num = 0;
+var inverse_stats = [
+    'row_aim_time',
+    'row_accuracy'
+];
 
 incrementTimer = function()
 {
@@ -15,11 +19,19 @@ compareStats = function(row)
     });
     var max_value = Math.max.apply(Math, values);
     var min_value = Math.min.apply(Math, values);
+
+    var max_color = 'green';
+    var min_color = 'red';
+
+    if($.inArray(row.id, inverse_stats) !== -1){
+        max_color = 'red';
+        min_color = 'green';
+    }
     $(row).find('td').each(function(index, elem){
         if($(this).text() == max_value){
-            $(this).css('color', 'green');
+            $(this).css('color', max_color);
         } else if ($(this).text() == min_value){
-            $(this).css('color', 'red');
+            $(this).css('color', min_color);
         } else {
             $(this).css('color', 'black');
         }
@@ -48,8 +60,17 @@ loadTankStats = function(tank_data)
     var engine = tank_data['engines'].pop();
     var suspension = tank_data['suspensions'].pop();
     var radio = tank_data['radios'].pop();
+    var turret_weight;
+    if(tank_data['turrets'].length > 0){
+        loadTurretStats(turret);
+         turret_weight = turret['weight'];
+    } else {
+        updateCell('row_view_range', tank_data['view_range']);
+        loadBlankTurretStats();
+        turret_weight = 0;
+    }
     var weight = (parseInt(gun['weight'])
-        +parseInt(turret['weight'])
+        +parseInt(turret_weight)
         +parseInt(suspension['weight'])
         +parseInt(engine['weight'])
         +parseInt(radio['weight'])
@@ -59,12 +80,6 @@ loadTankStats = function(tank_data)
     updateCell('row_hp_per_ton', hp_per_ton);
 
     loadGunStats(gun);
-    if(tank_data['turrets'].length > 0){
-        loadTurretStats(turret);
-    } else {
-        updateCell('row_view_range', tank_data['view_range']);
-        loadBlankTurretStats();
-    }
     loadEngineStats(engine);
     loadSuspensionStats(suspension);
     loadRadioStats(radio);
