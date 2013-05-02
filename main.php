@@ -7,9 +7,11 @@ include_once('../simple_html_dom.php');
 $url = 'http://wiki.worldoftanks.com';
 $html = file_get_html($url);
 
-$nation = $html->find('#By_Nation', 0)->parent()->parent()->parent()->find('.NavContent a', 5);
-
+//$nation = $html->find('#By_Nation', 0)->parent()->parent()->parent()->find('.NavContent a', 5);
 scrapeNation($nation);
+
+$tank_name = 'M10_Wolverine';
+scrapeTank($tank_name);
 
 //foreach ($nations as $nation){
 //    scrapeNation($nation);
@@ -41,17 +43,17 @@ function scrapeNation($nation_link)
         $tank_name = str_replace('/', '', $tank_link->href);
         if(!in_array($tank_name, $been_scraped)){
             if($tank_link->class == 'image') continue;
-            scrapeTank($tank_link);
+            scrapeTank($tank_name);
         }
         
         echo $tank_link->href;
     }
 }
 
-function scrapeTank($tank_link)
+function scrapeTank($tank_name)
 {
     if($tank_link->href == '/T23') return;
-    $url = 'http://wiki.worldoftanks.com'.$tank_link->href;
+    $url = 'http://wiki.worldoftanks.com/'.$tank_name;
     $html = file_get_html($url);
     
     $tank = new Tank(parseTank($html));
@@ -66,7 +68,6 @@ function scrapeTank($tank_link)
     
     $html->__destruct();
     $tank->__destruct();
-    $tank_link->__destruct();
     $html = null;
     $tank = null;
     $data_tables = null;
@@ -531,7 +532,7 @@ function parseTank($html)
     $tank_data['nation'] = strtolower($nation);
     
     $class = $main_panel->find('table', 0)->find('td', 1)->innertext;
-    $class = str_replace(' Tank', '', $class);
+    $class = str_replace(array(' Tank', 'Turreted '), '', $class);
     $tank_data['class'] = strtolower($class);
     
     $tier = $main_panel->find('table', 0)->find('td', 2)->innertext;

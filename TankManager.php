@@ -13,7 +13,9 @@ function loadTank($tank_id)
     
     $result = query($sql);
     $tank = new Tank($result);
+    $tmp_weight = $tank->getChassisWeight();
     $tank->loadModules();
+    $tank->setChassisWeight($tmp_weight);
     echo json_encode($tank->getJsonData());
 }
 

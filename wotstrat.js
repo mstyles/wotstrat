@@ -48,14 +48,15 @@ loadTankStats = function(tank_data)
     var engine = tank_data['engines'].pop();
     var suspension = tank_data['suspensions'].pop();
     var radio = tank_data['radios'].pop();
-//    console.log(gun['weight']);
-//    console.log(turret['weight']);
-//    console.log(suspension['weight']);
-//    console.log(engine['weight']);
-//    console.log(radio['weight']);
-//    console.log(tank_data['chassis_weight']);
-//    var weight = gun['weight']+turret['weight']+suspension['weight']+engine['weight']+radio['weight'];
-//    updateCell('row_weight', weight);
+    var weight = (parseInt(gun['weight'])
+        +parseInt(turret['weight'])
+        +parseInt(suspension['weight'])
+        +parseInt(engine['weight'])
+        +parseInt(radio['weight'])
+        +parseInt(tank_data['chassis_weight']))/1000;
+    updateCell('row_weight', weight);
+    var hp_per_ton = (parseInt(engine['power'])/weight).toFixed(2);
+    updateCell('row_hp_per_ton', hp_per_ton);
 
     loadGunStats(gun);
     if(tank_data['turrets'].length > 0){
@@ -107,7 +108,6 @@ loadBlankTurretStats = function()
 loadEngineStats = function(engine)
 {
     updateCell('row_horsepower', engine['power']);
-    updateCell('row_hp_per_ton', engine['power']);
 }
 
 loadSuspensionStats = function(suspension)
@@ -177,9 +177,7 @@ $(function(){
     $('body').on('click', '.load_tank', function(){
         var id;
         tank_num = $(this).index();
-        if($('.tank_id').val()){
-            id = $('.tank_id').val();
-        } else if ($('#tank_select').val()){
+        if ($('#tank_select').val()){
             id = $('#tank_select').val();
         } else {
             id = Math.floor(Math.random()*290);

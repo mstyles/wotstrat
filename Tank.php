@@ -60,7 +60,9 @@ class Tank
         foreach($properties as $key => $value){
             $this->$key = $value;
         }
-        $this->chassis_weight = $this->stock_weight * 1000;
+        if(!$this->chassis_weight){
+            $this->chassis_weight = $this->stock_weight * 1000;
+        }
     }
     
     function __toString()
@@ -367,6 +369,11 @@ class Tank
     function getChassisWeight()
     {
         return $this->chassis_weight;
+    }
+
+    function setChassisWeight($chassis_weight)
+    {
+        $this->chassis_weight = $chassis_weight;
     }
     
     function loadModules()

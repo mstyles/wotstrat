@@ -18,10 +18,6 @@
     <body>
         <h2>Tank vs Tank</h2>
         <p id='loading'>Processing...</p>
-        <span>Enter tank id manually: </span><input type="text" class='tank_id' />
-        <br>
-        <span>Or use the filters: </span>
-        <br>
         <input type="radio" class="tank_filter" name="filter_nation" value='usa'>USA
         <input type="radio" class="tank_filter" name="filter_nation" value='germany'>Germany
         <input type="radio" class="tank_filter" name="filter_nation" value='ussr'>Russia
