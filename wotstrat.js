@@ -12,28 +12,54 @@ incrementTimer = function()
     timer++;
 }
 
-compareStats = function(row)
+compareStatsStandard = function(row)
 {
     var values = $.map($(row).find('td'), function(elem, index){
-        return $(elem).text();
+        return $(elem).text() || null;
     });
     var max_value = Math.max.apply(Math, values);
     var min_value = Math.min.apply(Math, values);
 
-    var max_color = 'green';
-    var min_color = 'red';
+    var colors = getComparisonColors(row.id);
 
-    if($.inArray(row.id, inverse_stats) !== -1){
-        max_color = 'red';
-        min_color = 'green';
-    }
     $(row).find('td').each(function(index, elem){
         if($(this).text() == max_value){
-            $(this).css('color', max_color);
+            $(this).css('color', colors.max);
         } else if ($(this).text() == min_value){
-            $(this).css('color', min_color);
+            $(this).css('color', colors.min);
         } else {
             $(this).css('color', 'black');
+        }
+    });
+}
+
+compareStatsTriplet = function(row)
+{
+    var values = [[], [], []];
+    $.each($(row).find('td'), function(index, elem){
+        var stats = $(elem).text().split('/');
+        if(stats[0])values[0].push(stats[0]);
+        if(stats[1])values[1].push(stats[1]);
+        if(stats[2])values[2].push(stats[2]);
+    });
+    var max_values = [], min_values = [];
+    for(var i=0; i<3; i++){
+        max_values[i] = Math.max.apply(Math, values[i]);
+        min_values[i] = Math.min.apply(Math, values[i]);
+    }
+    if(isNaN(max_values[1])) return;
+
+    $(row).find('td').each(function(index, elem){
+        var stats = $(elem).find('span');
+        if (stats.length === 0) return;
+        for(var i=0; i<3; i++){
+            if(stats[i].textContent == max_values[i]){
+                $(stats[i]).css('color', 'green');
+            } else if (stats[i].textContent == min_values[i]){
+                $(stats[i]).css('color', 'red');
+            } else {
+                $(stats[i]).css('color', 'black');
+            }
         }
     });
 }
@@ -41,8 +67,25 @@ compareStats = function(row)
 compareAll = function()
 {
     $("#comparison_table tr").each(function(){
-        compareStats(this);
+        if( $($(this).find('td')[0]).text().match(/[\d]+\/[\d]+\/[\d]+/) ){
+            compareStatsTriplet(this);
+        } else {
+            compareStatsStandard(this);
+        }
     });
+}
+
+getComparisonColors = function(id)
+{
+    var colors = {
+        max : 'green',
+        min : 'red'
+    };
+    if($.inArray(id, inverse_stats) !== -1){
+        colors.max = 'red';
+        colors.min = 'green';
+    }
+    return colors;
 }
 
 loadTankStats = function(tank_data)
@@ -53,7 +96,11 @@ loadTankStats = function(tank_data)
     updateCell('row_class', tank_data['class']);
     updateCell('row_health', tank_data['hp_elite']);
     updateCell('row_speed_limit', tank_data['speed_limit']);
-    var hull_armor = tank_data['armor_front']+'/'+tank_data['armor_side']+'/'+tank_data['armor_rear'];
+    var hull_armor = formatTriplet([
+        tank_data['armor_front'],
+        tank_data['armor_side'],
+        tank_data['armor_rear']
+    ]);
     updateCell('row_hull_armor', hull_armor);
     var gun = tank_data['guns'].pop();
     var turret = tank_data['turrets'].slice(-1).pop();
@@ -75,7 +122,7 @@ loadTankStats = function(tank_data)
         +parseInt(engine['weight'])
         +parseInt(radio['weight'])
         +parseInt(tank_data['chassis_weight']))/1000;
-    updateCell('row_weight', weight);
+    updateCell('row_weight', weight.toFixed(2));
     var hp_per_ton = (parseInt(engine['power'])/weight).toFixed(2);
     updateCell('row_hp_per_ton', hp_per_ton);
 
@@ -106,9 +153,11 @@ loadGunStats = function(gun)
 
 loadTurretStats = function(turret)
 {
-    var turret_armor = turret['armor_front']+
-        '/'+turret['armor_side']+
-        '/'+turret['armor_rear'];
+    var turret_armor = formatTriplet([
+        turret['armor_front'],
+        turret['armor_side'],
+        turret['armor_rear']
+    ]);
     updateCell('row_turret_armor', turret_armor);
     updateCell('row_turret_traverse', turret['traverse_speed']);
     updateCell('row_view_range', turret['view_range']);
@@ -137,7 +186,7 @@ loadRadioStats = function(radio)
 
 updateCell = function(row_id, value)
 {
-    $('#'+row_id).find('.tank_'+tank_num).text(value);
+    $('#'+row_id).find('.tank_'+tank_num).html(value);
 }
 
 appendColumn = function()
@@ -170,6 +219,13 @@ submitFilters = function()
 
         });
     });
+}
+
+formatTriplet = function(values)
+{
+    return '<span>'+values[0]+'</span>'+
+        '/'+'<span>'+values[1]+'</span>'+
+        '/'+'<span>'+values[2]+'</span>';
 }
 
 $(function(){

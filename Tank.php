@@ -391,7 +391,7 @@ class Tank
             SELECT *
             FROM guns
             WHERE tank_id = {$this->id}
-            ORDER BY price
+            ORDER BY tier, xp_cost
         ";
         
         $guns = $this->queryAll($sql);
@@ -408,7 +408,7 @@ class Tank
             SELECT *
             FROM engines
             WHERE tank_id = {$this->id}
-            ORDER BY price
+            ORDER BY tier, xp_cost
         ";
         
         $engines = $this->queryAll($sql);
@@ -425,7 +425,7 @@ class Tank
             SELECT *
             FROM turrets
             WHERE tank_id = {$this->id}
-            ORDER BY price
+            ORDER BY tier, xp_cost
         ";
         
         $turrets = $this->queryAll($sql);
@@ -442,7 +442,7 @@ class Tank
             SELECT *
             FROM suspensions
             WHERE tank_id = {$this->id}
-            ORDER BY price
+            ORDER BY tier, xp_cost
         ";
         
         $suspensions = $this->queryAll($sql);
@@ -459,7 +459,7 @@ class Tank
             SELECT *
             FROM radios
             WHERE tank_id = {$this->id}
-            ORDER BY price
+            ORDER BY tier, xp_cost
         ";
         
         $radios = $this->queryAll($sql);

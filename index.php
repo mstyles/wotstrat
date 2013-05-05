@@ -49,7 +49,6 @@
         <div id='button_container'>
             <input type='button' class='load_tank' value='Load Tank 1' />
             <input type='button' class='load_tank' value='Load Tank 2' />
-            
         </div>
         <input type='button' id='add_tank' value='Add Tank' />
         <div id='tank_1' class='tank_box'></div>
