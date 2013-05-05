@@ -13,6 +13,10 @@
             #comparison_table td{
                 min-width: 150px;
             }
+            .turreted_field,
+            .non_turreted_field{
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -71,7 +75,7 @@
                 <th>Health</th>
             </tr>
             <tr id="row_speed_limit">
-                <th>Max Speed</th>
+                <th>Speed Limit</th>
             </tr>
             <tr id="row_weight">
                 <th>Weight</th>
@@ -83,22 +87,34 @@
                 <th>HP per Ton</th>
             </tr>
             <tr id="row_traverse_speed">
-                <th>Traverse Speed</th>
+                <th>Hull Traverse</th>
+            </tr>
+            <tr id="row_pivot">
+                <th>Pivot</th>
             </tr>
             <tr id="row_hull_armor">
                 <th>Hull Armor</th>
             </tr>
-            <tr id="row_turret_armor">
+            <tr id="row_turret_armor" class="turreted_field">
                 <th>Turret Armor</th>
             </tr>
-            <tr id="row_turret_traverse">
+            <tr id="row_turret_traverse" class="turreted_field">
                 <th>Turret Traverse</th>
+            </tr>
+            <tr id="row_gun_elevation">
+                <th>Gun Elevation</th>
             </tr>
             <tr id="row_view_range">
                 <th>View Range</th>
             </tr>
             <tr id="row_signal_range">
                 <th>Signal Range</th>
+            </tr>
+            <tr id="row_gun_arc" class="non_turreted_field">
+                <th>Gun Arc</th>
+            </tr>
+            <tr id="row_gun_traverse" class="non_turreted_field">
+                <th>Gun Traverse</th>
             </tr>
             <tr id="row_gun">
                 <th>Gun</th>
@@ -118,6 +134,12 @@
             <tr id="row_dmg_he">
                 <th>HE Damage</th>
             </tr>
+            <tr id="row_pen_gold">
+                <th>Gold Pen</th>
+            </tr>
+            <tr id="row_dmg_gold">
+                <th>Gold Damage</th>
+            </tr>
             <tr id="row_accuracy">
                 <th>Accuracy</th>
             </tr>
@@ -129,6 +151,12 @@
             </tr>
             <tr id="row_he_dps">
                 <th>HE DPS</th>
+            </tr>
+            <tr id="row_gold_dps">
+                <th>Gold DPS</th>
+            </tr>
+            <tr id="row_ammo">
+                <th>Max Ammo</th>
             </tr>
             </tbody>
         </table>
