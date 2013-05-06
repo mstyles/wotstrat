@@ -250,27 +250,75 @@ updateCell = function(row_id, value)
 
 appendColumn = function()
 {
-    $("#comparison_table tr").append("<td class='tank_"+column_count+"'></td>");
+    $("#comparison_table tr:first").append(getFilters());
+    $("#comparison_table tr:gt(0)").append("<td class='tank_"+column_count+"'></td>");
     column_count++;
 }
 
-submitFilters = function()
+getFilters = function()
 {
-    var tank_select = $('#tank_select');
+    var filters = '<td>'+
+                    '<div class="filter_wrap">'+
+                        '<div class="tank_filter nation usa" title="usa"></div>'+
+                        '<div class="tank_filter nation germany" title="germany"></div>'+
+                        '<div class="tank_filter nation ussr" title="ussr"></div>'+
+                        '<div class="tank_filter nation france" title="france"></div>'+
+                        '<div class="tank_filter nation china" title="china"></div>'+
+                        '<div class="tank_filter nation uk" title="uk"></div>'+
+                        '<br>'+
+                        '<div class="tank_filter tier">I</div>'+
+                        '<div class="tank_filter tier">II</div>'+
+                        '<div class="tank_filter tier">III</div>'+
+                        '<div class="tank_filter tier">IV</div>'+
+                        '<div class="tank_filter tier">V</div>'+
+                        '<div class="tank_filter tier">VI</div>'+
+                        '<div class="tank_filter tier">VII</div>'+
+                        '<div class="tank_filter tier">VIII</div>'+
+                        '<div class="tank_filter tier">IX</div>'+
+                        '<div class="tank_filter tier">X</div>'+
+                        '<br>'+
+                        '<div class="tank_filter class light" title="light"></div>'+
+                        '<div class="tank_filter class medium" title="medium"></div>'+
+                        '<div class="tank_filter class heavy" title="heavy"></div>'+
+                        '<div class="tank_filter class td" title="td"></div>'+
+                        '<div class="tank_filter class spg" title="spg"></div>'+
+                    '</div>'+
+                    '<select class="tank_select" id="tank_select_'+column_count+'">'+
+                        '<option value="0">--SELECT--</option>'+
+                    '</select>'+
+                '</td>'
+    return filters;
+}
+
+submitFilters = function(target)
+{
+    var tank_select = $(target).find('.tank_select');
     tank_select.html('');
-    var filter_nation = $('input[name=filter_nation]:checked').val();
-    var filter_class = $('input[name=filter_class]:checked').val();
-    var filter_tier = $('input[name=filter_tier]:checked').val();
+    var nation_filters = [];
+    $(target).find('.nation.active').each(function(){
+        nation_filters.push($(this).attr('title'));
+    });
+    var class_filters = [];
+    $(target).find('.class.active').each(function(){
+        class_filters.push($(this).attr('title'));
+    });
+    var tier_filters = [];
+    $(target).find('.tier.active').each(function(){
+        tier_filters.push(convertRomanNum($(this).text()));
+    });
     var data = {
         'action' : 'getTankOptions',
-        'nation' : filter_nation,
-        'class'  : filter_class,
-        'tier'   : filter_tier
+        'nation' : nation_filters,
+        'class'  : class_filters,
+        'tier'   : tier_filters
     }
     $.post('AjaxHandler.php', data, function(options){
         console.log(options);
         options = JSON.parse(options);
 
+        tank_select.append($('<option></option>')
+            .attr('value', '0')
+            .text('--SELECT--'));
         $.each(options, function(index, item){
             tank_select.append($('<option></option>')
                 .attr('value', item['id'])
@@ -311,6 +359,35 @@ formatTriplet = function(values)
         '/'+'<span>'+values[2]+'</span>';
 }
 
+function convertRomanNum(num)
+{
+    num = num+'';
+    switch (num){
+        case 'I':
+            return 1;
+        case 'II':
+            return 2;
+        case 'III':
+            return 3;
+        case 'IV':
+            return 4;
+        case 'V':
+            return 5;
+        case 'VI':
+            return 6;
+        case 'VII':
+            return 7;
+        case 'VIII':
+            return 8;
+        case 'IX':
+            return 9;
+        case 'X':
+            return 10;
+        default:
+            return 'RomanNumeral Error';
+    }
+}
+
 $(function(){
     appendColumn();
     appendColumn();
@@ -328,14 +405,9 @@ $(function(){
         });
     })
     
-    $('body').on('click', '.load_tank', function(){
-        var id;
-        tank_num = $(this).index();
-        if ($('#tank_select').val()){
-            id = $('#tank_select').val();
-        } else {
-            id = Math.floor(Math.random()*290);
-        }
+    $('body').on('change', '.tank_select', function(){
+        tank_num = $(this).attr('id').split('_')[2];
+        var id = $(this).val();
         $.post('AjaxHandler.php', {action : 'loadTank', tank_id : id}, function(data, status, jq){
            var tank_data = JSON.parse(data);
            loadTankStats(tank_data);
@@ -366,22 +438,9 @@ $(function(){
         if(column_count === 6) $(this).hide();
     })
 
-    $('.tank_filter').on('click', function(){
-        submitFilters();
-    })
-
-    $('#filter_nation_clear').on('click', function(){
-        $('input[name=filter_nation]:checked').prop('checked', false);
-        submitFilters();
-    })
-
-    $('#filter_tier_clear').on('click', function(){
-        $('input[name=filter_tier]:checked').prop('checked', false);
-        submitFilters();
-    })
-
-    $('#filter_class_clear').on('click', function(){
-        $('input[name=filter_class]:checked').prop('checked', false);
-        submitFilters();
+    $('body').on('click', '.tank_filter', function(){
+        $(this).toggleClass('active');
+        var column = $(this).closest('td');
+        submitFilters(column);
     })
 });

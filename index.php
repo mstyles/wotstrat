@@ -1,64 +1,45 @@
 <html>
     <head>
-        <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
-        <script src='wotstrat.js'></script>
-        <style>
-            #loading{
-                display: none;
-            }
-            #comparison_table{
-                border-collapse: collapse;
-                text-align: center;
-            }
-            #comparison_table td{
-                min-width: 150px;
-            }
-            .turreted_field,
-            .non_turreted_field{
-                display: none;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="css/comparator.css">
     </head>
     <body>
-        <h2>Tank vs Tank</h2>
-        <p id='loading'>Processing...</p>
-        <input type="radio" class="tank_filter" name="filter_nation" value='usa'>USA
-        <input type="radio" class="tank_filter" name="filter_nation" value='germany'>Germany
-        <input type="radio" class="tank_filter" name="filter_nation" value='ussr'>Russia
-        <input type="radio" class="tank_filter" name="filter_nation" value='france'>France
-        <input type="radio" class="tank_filter" name="filter_nation" value='china'>China
-        <input type="radio" class="tank_filter" name="filter_nation" value='uk'>UK
-        <input type="button" id="filter_nation_clear" value="Clear" />
-        <br>
-        <input type="radio" class="tank_filter" name="filter_tier" value='1'>1
-        <input type="radio" class="tank_filter" name="filter_tier" value='2'>2
-        <input type="radio" class="tank_filter" name="filter_tier" value='3'>3
-        <input type="radio" class="tank_filter" name="filter_tier" value='4'>4
-        <input type="radio" class="tank_filter" name="filter_tier" value='5'>5
-        <input type="radio" class="tank_filter" name="filter_tier" value='6'>6
-        <input type="radio" class="tank_filter" name="filter_tier" value='7'>7
-        <input type="radio" class="tank_filter" name="filter_tier" value='8'>8
-        <input type="radio" class="tank_filter" name="filter_tier" value='9'>9
-        <input type="radio" class="tank_filter" name="filter_tier" value='10'>10
-        <input type="button" id="filter_tier_clear" value="Clear" />
-        <br>
-        <input type="radio" class="tank_filter" name="filter_class" value='light'>Light
-        <input type="radio" class="tank_filter" name="filter_class" value='medium'>Medium
-        <input type="radio" class="tank_filter" name="filter_class" value='heavy'>Heavy
-        <input type="radio" class="tank_filter" name="filter_class" value='td'>TD
-        <input type="radio" class="tank_filter" name="filter_class" value='spg'>SPG
-        <input type="button" id="filter_class_clear" value="Clear" />
-        <br>
-        <select id="tank_select"></select>
-        <div id='button_container'>
-            <input type='button' class='load_tank' value='Load Tank 1' />
-            <input type='button' class='load_tank' value='Load Tank 2' />
-        </div>
-        <input type='button' id='add_tank' value='Add Tank' />
-        <div id='tank_1' class='tank_box'></div>
-        <br>
         <table id='comparison_table' border="1">
-            <tbody>
+            <tbody><tr>
+                <td>
+                    <h2>Tank vs Tank</h2>
+                    <input type='button' id='add_tank' value='Add Tank' />
+                </td>
+                <!--<td>
+                    <div class="filter_wrap">
+                        <div class="tank_filter nation usa" title="usa"></div>
+                        <div class="tank_filter nation germany" title="germany"></div>
+                        <div class="tank_filter nation ussr" title="ussr"></div>
+                        <div class="tank_filter nation france" title="france"></div>
+                        <div class="tank_filter nation china" title="china"></div>
+                        <div class="tank_filter nation uk" title="uk"></div>
+
+                        <div class="tank_filter tier">I</div>
+                        <div class="tank_filter tier">II</div>
+                        <div class="tank_filter tier">III</div>
+                        <div class="tank_filter tier">IV</div>
+                        <div class="tank_filter tier">V</div>
+                        <div class="tank_filter tier">VI</div>
+                        <div class="tank_filter tier">VII</div>
+                        <div class="tank_filter tier">VIII</div>
+                        <div class="tank_filter tier">IX</div>
+                        <div class="tank_filter tier">X</div>
+
+                        <div class="tank_filter class light" title="light"></div>
+                        <div class="tank_filter class medium" title="medium"></div>
+                        <div class="tank_filter class heavy" title="heavy"></div>
+                        <div class="tank_filter class td" title="td"></div>
+                        <div class="tank_filter class spg" title="spg"></div>
+                    </div>
+                    <select class="tank_select" id="tank_0">
+                        <option value="0">--SELECT--</option>
+                    </select>
+                </td>-->
+                </tr>
             <tr id="row_name">
                 <th>Name</th>
             </tr>
@@ -160,5 +141,7 @@
             </tr>
             </tbody>
         </table>
+        <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+        <script src='wotstrat.js'></script>
     </body>
 </html>

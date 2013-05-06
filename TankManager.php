@@ -22,14 +22,17 @@ function loadTank($tank_id)
 function getTankOptions()
 {
     $where_clauses = array();
-    if(isset($_REQUEST['nation'])){
-        $where_clauses[] = "nation = '{$_REQUEST['nation']}'";
+    if(!empty($_REQUEST['nation'])){
+        $nation_filters = implode("','", $_REQUEST['nation']);
+        $where_clauses[] = "nation IN ('$nation_filters')";
     }
-    if(isset($_REQUEST['class'])){
-        $where_clauses[] = "class = '{$_REQUEST['class']}'";
+    if(!empty($_REQUEST['class'])){
+        $class_filters = implode("','", $_REQUEST['class']);
+        $where_clauses[] = "class IN ('$class_filters')";
     }
-    if(isset($_REQUEST['tier'])){
-        $where_clauses[] = "tier = '{$_REQUEST['tier']}'";
+    if(!empty($_REQUEST['tier'])){
+        $tier_filters = implode(',', $_REQUEST['tier']);
+        $where_clauses[] = "tier IN ($tier_filters)";
     }
     $where = implode(' AND ', $where_clauses);
     $where = 'WHERE '.$where;
