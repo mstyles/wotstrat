@@ -8,6 +8,8 @@
                 <td>
                     <h2>Tank vs Tank</h2>
                     <input type='button' id='add_tank' value='Add Tank' />
+                    <br>
+                    <input type='button' id='remove_tank' value='Remove Tank' />
                 </td>
                 <!--<td>
                     <div class="filter_wrap">

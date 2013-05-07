@@ -255,6 +255,13 @@ appendColumn = function()
     column_count++;
 }
 
+removeColumn = function()
+{
+    $("#comparison_table tr td:last-child").remove();
+    current_tanks.pop();
+    column_count--;
+}
+
 getFilters = function()
 {
     var filters = '<td>'+
@@ -433,9 +440,15 @@ $(function(){
 
     $('#add_tank').on('click', function(){
         var num = column_count + 1;
-        $('#button_container').append('<input type="button" class="load_tank" value="Load Tank '+num+'" />');
         appendColumn();
         if(column_count === 6) $(this).hide();
+        $('#remove_tank').show();
+    })
+
+    $('#remove_tank').on('click', function(){
+        removeColumn();
+        if(column_count === 1) $(this).hide();
+        $('#add_tank').show();
     })
 
     $('body').on('click', '.tank_filter', function(){
