@@ -4,44 +4,17 @@
     </head>
     <body>
         <table id='comparison_table' border="1">
-            <tbody><tr>
+            <tbody>
+            <tr>
                 <td>
                     <h2>Tank vs Tank</h2>
                     <input type='button' id='add_tank' value='Add Tank' />
                     <br>
                     <input type='button' id='remove_tank' value='Remove Tank' />
+                    <br>
+                    <input type='button' id='toggle_modules' value='Show Modules' />
                 </td>
-                <!--<td>
-                    <div class="filter_wrap">
-                        <div class="tank_filter nation usa" title="usa"></div>
-                        <div class="tank_filter nation germany" title="germany"></div>
-                        <div class="tank_filter nation ussr" title="ussr"></div>
-                        <div class="tank_filter nation france" title="france"></div>
-                        <div class="tank_filter nation china" title="china"></div>
-                        <div class="tank_filter nation uk" title="uk"></div>
-
-                        <div class="tank_filter tier">I</div>
-                        <div class="tank_filter tier">II</div>
-                        <div class="tank_filter tier">III</div>
-                        <div class="tank_filter tier">IV</div>
-                        <div class="tank_filter tier">V</div>
-                        <div class="tank_filter tier">VI</div>
-                        <div class="tank_filter tier">VII</div>
-                        <div class="tank_filter tier">VIII</div>
-                        <div class="tank_filter tier">IX</div>
-                        <div class="tank_filter tier">X</div>
-
-                        <div class="tank_filter class light" title="light"></div>
-                        <div class="tank_filter class medium" title="medium"></div>
-                        <div class="tank_filter class heavy" title="heavy"></div>
-                        <div class="tank_filter class td" title="td"></div>
-                        <div class="tank_filter class spg" title="spg"></div>
-                    </div>
-                    <select class="tank_select" id="tank_0">
-                        <option value="0">--SELECT--</option>
-                    </select>
-                </td>-->
-                </tr>
+            </tr>
             <tr id="row_name">
                 <th>Name</th>
             </tr>

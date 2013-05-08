@@ -145,11 +145,11 @@ loadTankStats = function(tank_data)
         tank_data['armor_rear']
     ]);
     updateCell('row_hull_armor', hull_armor);
-    var gun = tank_data['guns'].pop();
+    var gun = tank_data['guns'].slice(-1).pop();
     var turret = tank_data['turrets'].slice(-1).pop();
-    var engine = tank_data['engines'].pop();
-    var suspension = tank_data['suspensions'].pop();
-    var radio = tank_data['radios'].pop();
+    var engine = tank_data['engines'].slice(-1).pop();
+    var suspension = tank_data['suspensions'].slice(-1).pop();
+    var radio = tank_data['radios'].slice(-1).pop();
     var turret_weight;
     if(tank_data['turrets'].length > 0){
         loadTurretStats(turret);
@@ -208,7 +208,7 @@ loadGunStats = function(gun)
     updateCell('row_ammo', gun.ammo);
 }
 
-loadTurretStats = function(turret)
+loadTurretStats = function(turret, isElite)
 {
     var turret_armor = formatTriplet([
         turret['armor_front'],
@@ -218,6 +218,7 @@ loadTurretStats = function(turret)
     updateCell('row_turret_armor', turret_armor);
     updateCell('row_turret_traverse', turret['traverse_speed']);
     updateCell('row_view_range', turret['view_range']);
+//    var health = isElite ?
 }
 
 loadBlankTurretStats = function()
@@ -293,7 +294,28 @@ getFilters = function()
                     '<select class="tank_select" id="tank_select_'+column_count+'">'+
                         '<option value="0">--SELECT--</option>'+
                     '</select>'+
-                '</td>'
+                    '<div class="module_selects">'+
+                        '<select class="gun_select">'+
+                            '<option value="0">--gun--</option>'+
+                        '</select>'+
+                        '<br>'+
+                        '<select class="turret_select">'+
+                            '<option value="0">--turret--</option>'+
+                        '</select>'+
+                        '<br>'+
+                        '<select class="suspension_select">'+
+                            '<option value="0">--suspension--</option>'+
+                        '</select>'+
+                        '<br>'+
+                        '<select class="engine_select">'+
+                            '<option value="0">--engine--</option>'+
+                        '</select>'+
+                        '<br>'+
+                        '<select class="radio_select">'+
+                            '<option value="0">--radio--</option>'+
+                        '</select>'+
+                    '</div>'+
+                '</td>';
     return filters;
 }
 
@@ -330,7 +352,6 @@ submitFilters = function(target)
             tank_select.append($('<option></option>')
                 .attr('value', item['id'])
                 .text(item['name']));
-
         });
     });
 }
@@ -364,6 +385,22 @@ formatTriplet = function(values)
     return '<span>'+values[0]+'</span>'+
         '/'+'<span>'+values[1]+'</span>'+
         '/'+'<span>'+values[2]+'</span>';
+}
+
+setModuleOptions = function(type, modules, column, isElite)
+{
+    isElite = 0;
+    var module_select = $($(column).find('.'+type+'_select'));
+    module_select.html('');
+    module_select.append($('<option></option>')
+        .attr('value', '0')
+        .text('--'+type+'--'));
+    $.each(modules, function(i, module){
+        if(module.elite != isElite) return;
+        module_select.append($('<option></option')
+            .attr('value', i)
+            .text(module.name));
+    });
 }
 
 function convertRomanNum(num)
@@ -415,9 +452,15 @@ $(function(){
     $('body').on('change', '.tank_select', function(){
         tank_num = $(this).attr('id').split('_')[2];
         var id = $(this).val();
+        var column = $(this).closest('td');
         $.post('AjaxHandler.php', {action : 'loadTank', tank_id : id}, function(data, status, jq){
            var tank_data = JSON.parse(data);
            loadTankStats(tank_data);
+           setModuleOptions('gun', tank_data['guns'], column);
+           setModuleOptions('turret', tank_data['turrets'], column);
+           setModuleOptions('suspension', tank_data['suspensions'], column);
+           setModuleOptions('engine', tank_data['engines'], column);
+           setModuleOptions('radio', tank_data['radios'], column);
            current_tanks[tank_num] = tank_data;
            compareAll();
            switch(turretCheck()){
@@ -455,5 +498,41 @@ $(function(){
         $(this).toggleClass('active');
         var column = $(this).closest('td');
         submitFilters(column);
+    })
+
+    $('#toggle_modules').on('click', function(){
+        var label = $('.module_selects').is(':hidden') ? 'Hide' : 'Show';
+        $(this).val(label+' Modules');
+        $('.module_selects').toggle();
+    })
+
+    $('body').on('change', '.gun_select', function(){
+        tank_num = $(this).closest('td').index()-1;
+        loadGunStats(current_tanks[tank_num].guns[$(this).val()]);
+        compareAll();
+    })
+
+    $('body').on('change', '.turret_select', function(){
+        tank_num = $(this).closest('td').index()-1;
+        loadTurretStats(current_tanks[tank_num].turrets[$(this).val()]);
+        compareAll();
+    })
+
+    $('body').on('change', '.suspension_select', function(){
+        tank_num = $(this).closest('td').index()-1;
+        loadSuspensionStats(current_tanks[tank_num].suspensions[$(this).val()]);
+        compareAll();
+    })
+
+    $('body').on('change', '.engine_select', function(){
+        tank_num = $(this).closest('td').index()-1;
+        loadEngineStats(current_tanks[tank_num].engines[$(this).val()]);
+        compareAll();
+    })
+
+    $('body').on('change', '.radio_select', function(){
+        tank_num = $(this).closest('td').index()-1;
+        loadRadioStats(current_tanks[tank_num].radios[$(this).val()]);
+        compareAll();
     })
 });

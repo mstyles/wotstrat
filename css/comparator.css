@@ -36,6 +36,10 @@ body{
     margin: 0 auto;
 }
 
+.module_selects{
+    display: none;
+}
+
 .usa{
     background: url('/wotstrat/images/usa.jpg');
     height: 20px;
