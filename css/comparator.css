@@ -38,40 +38,41 @@ body{
 
 .module_selects{
     display: none;
+    /*text-align: left;*/
 }
 
 .usa{
-    background: url('/wotstrat/images/usa.jpg');
+    background: url('/wotstrat/images/usa.png');
     height: 20px;
     width: 48px;
 }
 
 .china{
-    background: url('/wotstrat/images/china.jpg');
+    background: url('/wotstrat/images/china.png');
     height: 20px;
     width: 48px;
 }
 
 .germany{
-    background: url('/wotstrat/images/germany.jpg');
+    background: url('/wotstrat/images/germany.png');
     height: 20px;
     width: 48px;
 }
 
 .ussr{
-    background: url('/wotstrat/images/russia.jpg');
+    background: url('/wotstrat/images/russia.png');
     height: 20px;
     width: 48px;
 }
 
 .uk{
-    background: url('/wotstrat/images/uk.jpg');
+    background: url('/wotstrat/images/uk.png');
     height: 20px;
     width: 48px;
 }
 
 .france{
-    background: url('/wotstrat/images/france.jpg');
+    background: url('/wotstrat/images/france.png');
     height: 20px;
     width: 48px;
 }

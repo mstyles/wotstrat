@@ -136,7 +136,6 @@ loadTankStats = function(tank_data)
     updateCell('row_nation', tank_data['nation']);
     updateCell('row_tier', tank_data['tier']);
     updateCell('row_class', tank_data['class']);
-    updateCell('row_health', tank_data['hp_elite']);
     updateCell('row_speed_limit', tank_data['speed_limit']);
     updateCell('row_pivot', tank_data['pivot'] == 1 ? 'Yes' : 'No');
     var hull_armor = formatTriplet([
@@ -145,21 +144,18 @@ loadTankStats = function(tank_data)
         tank_data['armor_rear']
     ]);
     updateCell('row_hull_armor', hull_armor);
-    var gun = tank_data['guns'].slice(-1).pop();
-    var turret = tank_data['turrets'].slice(-1).pop();
-    var engine = tank_data['engines'].slice(-1).pop();
-    var suspension = tank_data['suspensions'].slice(-1).pop();
-    var radio = tank_data['radios'].slice(-1).pop();
-    var turret_weight;
+    tank_data.gun = tank_data['guns'].slice(-1).pop();
+    tank_data.turret = tank_data['turrets'].slice(-1).pop();
+    tank_data.engine = tank_data['engines'].slice(-1).pop();
+    tank_data.suspension = tank_data['suspensions'].slice(-1).pop();
+    tank_data.radio = tank_data['radios'].slice(-1).pop();
     if(tank_data['turrets'].length > 0){
-        loadTurretStats(turret);
-        turret_weight = turret['weight'];
+        loadTurretStats(tank_data.turret, 1);
         updateCell('row_gun_arc', '360');
         updateCell('row_gun_traverse', '--');
     } else {
         updateCell('row_view_range', tank_data['view_range']);
         loadBlankTurretStats();
-        turret_weight = 0;
         var gun_arc = formatDuo([
             tank_data.gun_arc_left,
             tank_data.gun_arc_right
@@ -168,22 +164,29 @@ loadTankStats = function(tank_data)
         updateCell('row_gun_traverse', tank_data['gun_traverse_speed']);
         $('.non_turreted_field').show();
     }
-    tank_data.weight = (parseInt(gun['weight'])
-        +parseInt(turret_weight)
-        +parseInt(suspension['weight'])
-        +parseInt(engine['weight'])
-        +parseInt(radio['weight'])
-        +parseInt(tank_data['chassis_weight']))/1000;
-    updateCell('row_weight', tank_data.weight.toFixed(2));
+    updateWeightStats();
+    loadGunStats(tank_data.gun);
+    loadEngineStats(tank_data.engine);
+    loadSuspensionStats(tank_data.suspension);
+    loadRadioStats(tank_data.radio);
+}
 
-    loadGunStats(gun);
-    loadEngineStats(engine, tank_data.weight);
-    loadSuspensionStats(suspension);
-    loadRadioStats(radio);
+calculateWeight = function()
+{
+    var tank_data = current_tanks[tank_num];
+    var turret_weight = tank_data.turret ? tank_data.turret.weight : 0;
+    tank_data.weight = (parseInt(tank_data.gun['weight'])
+        +parseInt(turret_weight)
+        +parseInt(tank_data.suspension['weight'])
+        +parseInt(tank_data.engine['weight'])
+        +parseInt(tank_data.radio['weight'])
+        +parseInt(tank_data['chassis_weight']))/1000;
 }
 
 loadGunStats = function(gun)
 {
+    var current_tank = current_tanks[tank_num];
+    current_tank.gun = gun;
     updateCell('row_gun', gun['name']);
     updateCell('row_rate_of_fire', gun['rate_of_fire']);
     updateCell('row_pen_ap', gun['pen_ap']);
@@ -206,10 +209,13 @@ loadGunStats = function(gun)
     ]);
     updateCell('row_gun_elevation', gun_elevation);
     updateCell('row_ammo', gun.ammo);
+    updateWeightStats();
 }
 
 loadTurretStats = function(turret, isElite)
 {
+    var current_tank = current_tanks[tank_num];
+    current_tank.turret = turret;
     var turret_armor = formatTriplet([
         turret['armor_front'],
         turret['armor_side'],
@@ -218,7 +224,9 @@ loadTurretStats = function(turret, isElite)
     updateCell('row_turret_armor', turret_armor);
     updateCell('row_turret_traverse', turret['traverse_speed']);
     updateCell('row_view_range', turret['view_range']);
-//    var health = isElite ?
+    var health = isElite ? current_tank.hp_elite : current_tank.hp_stock;
+    updateCell('row_health', health);
+    updateWeightStats();
 }
 
 loadBlankTurretStats = function()
@@ -227,21 +235,37 @@ loadBlankTurretStats = function()
     updateCell('row_turret_traverse', '--');
 }
 
-loadEngineStats = function(engine, weight)
+loadEngineStats = function(engine)
 {
+    var current_tank = current_tanks[tank_num];
+    current_tank.engine = engine;
     updateCell('row_horsepower', engine['power']);
-    var hp_per_ton = (parseInt(engine['power'])/weight).toFixed(2);
-    updateCell('row_hp_per_ton', hp_per_ton);
+    updateWeightStats();
 }
 
 loadSuspensionStats = function(suspension)
 {
+    var current_tank = current_tanks[tank_num];
+    current_tank.suspension = suspension;
     updateCell('row_traverse_speed', suspension['traverse_speed']);
+    updateWeightStats();
 }
 
 loadRadioStats = function(radio)
 {
+    var current_tank = current_tanks[tank_num];
+    current_tank.radio = radio;
     updateCell('row_signal_range', radio['range']);
+    updateWeightStats();
+}
+
+updateWeightStats = function()
+{
+    var current_tank = current_tanks[tank_num];
+    calculateWeight();
+    updateCell('row_weight', current_tank.weight.toFixed(2));
+    var hp_per_ton = (parseInt(current_tank.engine.power)/current_tank.weight).toFixed(2);
+    updateCell('row_hp_per_ton', hp_per_ton);
 }
 
 updateCell = function(row_id, value)
@@ -396,7 +420,7 @@ setModuleOptions = function(type, modules, column, isElite)
         .attr('value', '0')
         .text('--'+type+'--'));
     $.each(modules, function(i, module){
-        if(module.elite != isElite) return;
+//        if(module.elite != isElite) return;
         module_select.append($('<option></option')
             .attr('value', i)
             .text(module.name));
@@ -455,13 +479,13 @@ $(function(){
         var column = $(this).closest('td');
         $.post('AjaxHandler.php', {action : 'loadTank', tank_id : id}, function(data, status, jq){
            var tank_data = JSON.parse(data);
+           current_tanks[tank_num] = tank_data;
            loadTankStats(tank_data);
            setModuleOptions('gun', tank_data['guns'], column);
            setModuleOptions('turret', tank_data['turrets'], column);
            setModuleOptions('suspension', tank_data['suspensions'], column);
            setModuleOptions('engine', tank_data['engines'], column);
            setModuleOptions('radio', tank_data['radios'], column);
-           current_tanks[tank_num] = tank_data;
            compareAll();
            switch(turretCheck()){
                case BOTH:
@@ -514,7 +538,8 @@ $(function(){
 
     $('body').on('change', '.turret_select', function(){
         tank_num = $(this).closest('td').index()-1;
-        loadTurretStats(current_tanks[tank_num].turrets[$(this).val()]);
+        var turret_index = parseInt($(this).val());
+        loadTurretStats(current_tanks[tank_num].turrets[turret_index], turret_index);
         compareAll();
     })
 
