@@ -144,7 +144,7 @@ loadTankStats = function(tank_data)
         tank_data['armor_rear']
     ]);
     updateCell('row_hull_armor', hull_armor);
-    tank_data.gun = tank_data['guns'].slice(-1).pop();
+    tank_data.gun = getBestGun(tank_data['guns']);
     tank_data.turret = tank_data['turrets'].slice(-1).pop();
     tank_data.engine = tank_data['engines'].slice(-1).pop();
     tank_data.suspension = tank_data['suspensions'].slice(-1).pop();
@@ -187,6 +187,9 @@ loadGunStats = function(gun)
 {
     var current_tank = current_tanks[tank_num];
     current_tank.gun = gun;
+    if(current_tank.turret && current_tank.turret.isElite){
+        gun = getEliteVersion(gun);
+    }
     updateCell('row_gun', gun['name']);
     updateCell('row_rate_of_fire', gun['rate_of_fire']);
     updateCell('row_pen_ap', gun['pen_ap']);
@@ -216,6 +219,7 @@ loadTurretStats = function(turret, isElite)
 {
     var current_tank = current_tanks[tank_num];
     current_tank.turret = turret;
+    current_tank.turret.isElite = isElite;
     var turret_armor = formatTriplet([
         turret['armor_front'],
         turret['armor_side'],
@@ -227,6 +231,7 @@ loadTurretStats = function(turret, isElite)
     var health = isElite ? current_tank.hp_elite : current_tank.hp_stock;
     updateCell('row_health', health);
     updateWeightStats();
+    loadGunStats(current_tank.gun);
 }
 
 loadBlankTurretStats = function()
@@ -277,6 +282,7 @@ appendColumn = function()
 {
     $("#comparison_table tr:first").append(getFilters());
     $("#comparison_table tr:gt(0)").append("<td class='tank_"+column_count+"'></td>");
+    if(!$('.module_selects :first').is(':hidden'))$('.module_selects').show();
     column_count++;
 }
 
@@ -411,20 +417,41 @@ formatTriplet = function(values)
         '/'+'<span>'+values[2]+'</span>';
 }
 
-setModuleOptions = function(type, modules, column, isElite)
+setModuleOptions = function(type, modules, isElite)
 {
     isElite = 0;
-    var module_select = $($(column).find('.'+type+'_select'));
+    var container = $('#row_tank').children()[tank_num+1];
+    var module_select = $($(container).find('.'+type+'_select'));
     module_select.html('');
     module_select.append($('<option></option>')
         .attr('value', '0')
         .text('--'+type+'--'));
     $.each(modules, function(i, module){
-//        if(module.elite != isElite) return;
+        if(type === 'gun' && module.elite != isElite) return;
         module_select.append($('<option></option')
             .attr('value', i)
             .text(module.name));
     });
+}
+
+getEliteVersion = function(gun)
+{
+    var current_tank = current_tanks[tank_num];
+    var versions = [];
+    $.each(current_tank.guns, function(){
+        if(this.name === gun.name){
+            versions.push(this);
+        }
+    });
+    return versions.pop();
+}
+
+getBestGun = function(guns)
+{
+    var stock_guns = $.map(guns, function(gun, index){
+        return parseInt(gun.elite) ? null : gun;
+    });
+    return stock_guns.pop();
 }
 
 function convertRomanNum(num)
@@ -474,18 +501,17 @@ $(function(){
     })
     
     $('body').on('change', '.tank_select', function(){
-        tank_num = $(this).attr('id').split('_')[2];
+        tank_num = parseInt($(this).attr('id').split('_')[2]);
         var id = $(this).val();
-        var column = $(this).closest('td');
         $.post('AjaxHandler.php', {action : 'loadTank', tank_id : id}, function(data, status, jq){
            var tank_data = JSON.parse(data);
            current_tanks[tank_num] = tank_data;
            loadTankStats(tank_data);
-           setModuleOptions('gun', tank_data['guns'], column);
-           setModuleOptions('turret', tank_data['turrets'], column);
-           setModuleOptions('suspension', tank_data['suspensions'], column);
-           setModuleOptions('engine', tank_data['engines'], column);
-           setModuleOptions('radio', tank_data['radios'], column);
+           setModuleOptions('gun', tank_data['guns']);
+           setModuleOptions('turret', tank_data['turrets']);
+           setModuleOptions('suspension', tank_data['suspensions']);
+           setModuleOptions('engine', tank_data['engines']);
+           setModuleOptions('radio', tank_data['radios']);
            compareAll();
            switch(turretCheck()){
                case BOTH:

@@ -21,10 +21,20 @@ body{
     margin: 2px;
 }
 
+.nation{
+    height: 20px;
+    width: 48px;
+}
+
 .tier{
     color: gold;
     background: silver;
     width: 27px;
+}
+
+.class{
+    height: 10px;
+    width: 10px;
 }
 
 .active{
@@ -41,68 +51,24 @@ body{
     /*text-align: left;*/
 }
 
-.usa{
-    background: url('/wotstrat/images/usa.png');
-    height: 20px;
-    width: 48px;
-}
+.usa{ background: url('../images/usa.png');}
 
-.china{
-    background: url('/wotstrat/images/china.png');
-    height: 20px;
-    width: 48px;
-}
+.china{ background: url('../images/china.png');}
 
-.germany{
-    background: url('/wotstrat/images/germany.png');
-    height: 20px;
-    width: 48px;
-}
+.germany{ background: url('../images/germany.png');}
 
-.ussr{
-    background: url('/wotstrat/images/russia.png');
-    height: 20px;
-    width: 48px;
-}
+.ussr{ background: url('../images/russia.png');}
 
-.uk{
-    background: url('/wotstrat/images/uk.png');
-    height: 20px;
-    width: 48px;
-}
+.uk{ background: url('../images/uk.png');}
 
-.france{
-    background: url('/wotstrat/images/france.png');
-    height: 20px;
-    width: 48px;
-}
+.france{ background: url('../images/france.png');}
 
-.light{
-    background: url('/wotstrat/images/light.png');
-    height: 10px;
-    width: 10px;
-}
+.light{ background: url('../images/light.png');}
 
-.medium{
-    background: url('/wotstrat/images/medium.png');
-    height: 10px;
-    width: 10px;
-}
+.medium{ background: url('../images/medium.png');}
 
-.heavy{
-    background: url('/wotstrat/images/heavy.png');
-    height: 10px;
-    width: 10px;
-}
+.heavy{ background: url('../images/heavy.png');}
 
-.td{
-    background: url('/wotstrat/images/td.png');
-    height: 10px;
-    width: 10px;
-}
+.td{ background: url('../images/td.png');}
 
-.spg{
-    background: url('/wotstrat/images/spg.png');
-    height: 10px;
-    width: 10px;
-}
+.spg{ background: url('../images/spg.png') no-repeat;}

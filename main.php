@@ -1,8 +1,8 @@
 <?php
-mysql_connect("localhost", "wot_admin", "poop");
-mysql_select_db("wot_data");
-//mysql_connect("us-cdbr-azure-northcentral-a.cleardb.com", "bf440d47033236", "4c96486f");
-//mysql_select_db("wotdb");
+//mysql_connect("localhost", "wot_admin", "poop");
+//mysql_select_db("wot_data");
+mysql_connect("us-cdbr-azure-northcentral-a.cleardb.com", "bf440d47033236", "4c96486f");
+mysql_select_db("wotdb");
 
 include_once('../simple_html_dom.php');
 

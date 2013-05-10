@@ -5,7 +5,7 @@
     <body>
         <table id='comparison_table' border="1">
             <tbody>
-            <tr>
+            <tr id="row_tank">
                 <td>
                     <h2>Tank vs Tank</h2>
                     <input type='button' id='add_tank' value='Add Tank' />
