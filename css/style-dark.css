@@ -1,0 +1,204 @@
+body {
+color: #c0c0c0;
+}
+
+input, textarea, select {
+background: #808080;
+color: #202020;
+}
+input:focus, textarea:focus, select:focus {
+background: #c0c0c0;
+}
+input[type="submit"], input[type="button"], input[type="reset"] {
+background: url(../images/submit_btn_dark.png) no-repeat;
+color: #000000;
+}
+input[type="submit"]:hover, input[type="reset"]:hover {
+color: #c0c0c0;
+}
+blockquote {
+background: transparent url(../images/bq_dark.png) left top no-repeat;
+}
+hr {
+background-color: #202020;
+color: #202020;
+}
+th {
+background: #202020;
+}
+td {
+background: #404040;
+}
+fieldset {
+border: 1px solid #202020;
+}
+legend {
+color: #ffffff;
+}
+.divider {
+border-top: 1px solid #202020;
+}
+
+#header {
+background: url(../images/header_dark.png) no-repeat;
+}
+#header-bar {
+border-bottom: 1px solid #000000;
+background: url(../images/header_bar_dark.png) repeat-x;
+}
+#header-bar #searchform {
+background: url(../images/search_bar_dark.png) no-repeat;
+}
+
+#nav-container {
+background: url(../images/nav_divider_dark.png) repeat-y left;
+}
+#nav li{
+background: url(../images/nav_divider_dark.png) repeat-y right;
+}
+#nav ul {
+background: url(../images/nav_bg_dark.png) no-repeat left top;
+}
+#nav ul ul {
+background: url(../images/nav_bg_dark.png) no-repeat right top;
+}
+#nav li ul .nav-last {
+border-bottom: 1px solid #303030;
+}
+#nav a {
+color: #cecece;
+}
+#nav .children .cat-item a, #nav li .page_item a {
+color: #cecece;
+}
+#nav .children .cat-item a:hover, #nav li .page_item a:hover {
+background: #000000;
+color: #ffffff;
+}
+
+.tooltip { 
+background:transparent url(../images/tooltip_dark.png) no-repeat; 
+}
+
+#content-wrapper-outer {
+background: url(../images/page_bg_dark.png) repeat-y;
+}
+
+#footer {
+background: url(../images/footer_dark.png) no-repeat;
+color: #808080;
+}
+#footer a {
+color: #808080;
+}
+#footer a:hover {
+color: #ffffff;
+}
+
+.meta, .meta a {
+color: #404040;
+}
+
+.page-title {
+border-bottom: 1px solid #202020;
+}
+.subtitle {
+color: #c0c0c0;
+}
+
+#tabs {
+background: url(../images/tab_bg_dark.png) no-repeat;
+}
+a.tab {
+color: #404040;
+}
+a.tab:hover, a.tab-active, a.tab-active:hover {
+color: #c0c0c0;
+}
+
+.kwicks li, .gallery-image, .post-image {
+background: url(../images/ajax_loader_dark.gif) 50% 50% no-repeat;
+}
+.slider-title h1 {
+color: #ffffff;
+text-shadow: #000000 1px 1px 1px;
+}
+.slider-title, .slider-desc, .fadesliderImage span, .minisliderImage span {
+background: url(../images/slider_desc_bg_dark.png) repeat;
+color: #c0c0c0;
+}
+
+#carousel-wrapper {
+background: url(../images/image_slider_dark.jpg);
+}
+.prev {
+background: url(../images/image_slider_prev_dark.gif) no-repeat;
+}
+.next {
+background: url(../images/image_slider_next_dark.gif) no-repeat;
+}
+
+.gallery-image-details {
+background: #000000;
+border: 1px solid #404040;
+color: #c0c0c0;
+}
+
+.widget h3 {
+color: #c0c0c0;
+border-bottom: 1px solid #202020;
+}
+.widget li {
+border-bottom: 1px solid #202020;
+}
+.widget img {
+border: 1px solid #202020;
+}
+.widget img:hover {
+border: 1px solid #404040;
+}
+
+.post-display img {
+border: 1px solid #202020;
+}
+
+#minislider {
+border: 1px solid #202020;
+}
+
+#comments h3 {
+border-bottom: 1px solid #202020;
+}
+.comment-body {
+border-bottom: 1px solid #202020;
+}
+
+.alignleft, .alignright, .aligncenter {
+border: 1px solid #202020;
+}
+.wp-caption-text {
+color: #404040;
+}
+
+.wp-pagenavi a, .wp-pagenavi a:link, .wp-pagenavi a:visited, .wp-pagenavi a:active, .wp-pagenavi span.pages, .wp-pagenavi span.extend, .page-numbers, .wp-pagenavi span.current, .page-comments span.current {
+color: #c0c0c0 !important;
+}
+.wp-pagenavi span.current, .page-comments span.current, .wp-pagenavi a:hover, .page-numbers:hover {	
+background: #202020 !important;
+color: #c0c0c0 !important;
+}
+.post-navi {
+color: #c0c0c0 !important;
+}
+.post-navi span {
+background: #202020 !important;
+color: #c0c0c0 !important;
+}
+.post-navi a:hover span {
+background: #202020 !important;
+color: #c0c0c0 !important;
+}
+
+.loader {
+background: url('../images/ajax_loader_dark.gif') no-repeat center center;
+}
