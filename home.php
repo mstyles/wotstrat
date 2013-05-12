@@ -13,7 +13,6 @@
 				<img src="./WOTStrat_files/tank2.jpg" alt="" class="wp-post-image">			</a>
 
 			<span class="cap-bottom" style="display: none;">
-				<h1><cufon class="cufon cufon-canvas" alt="Strategy" style="width: 100px; height: 20px;"><canvas width="107" height="19" style="width: 107px; height: 19px; top: 1px; left: 0px;"></canvas><cufontext>Strategy</cufontext></cufon></h1>
 				... <a href="http://wot.is2.byuh.edu/staging/strategy/">Continue »</a>			</span>
 
 		</div>
@@ -26,7 +25,6 @@
 				<img src="./WOTStrat_files/tank1.jpg" alt="" class="wp-post-image">			</a>
 
 			<span class="cap-bottom" style="display: inline;">
-				<h1><cufon class="cufon cufon-canvas" alt="WoTSTRAT" style="width: 107px; height: 20px;"><canvas width="116" height="19" style="width: 116px; height: 19px; top: 1px; left: 0px;"></canvas><cufontext>WoTSTRAT</cufontext></cufon></h1>
 				... <a href="http://wot.is2.byuh.edu/staging/hello-world/">Continue »</a>			</span>
 
 		</div>
@@ -93,7 +91,6 @@
 
 
 
-		<h2><a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/" title="x3 First Battle Experience Event!"><cufon class="cufon cufon-canvas" alt="x3 " style="width: 35px; height: 23px;"><canvas width="52" height="22" style="width: 52px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>x3 </cufontext></cufon><cufon class="cufon cufon-canvas" alt="First " style="width: 68px; height: 23px;"><canvas width="85" height="22" style="width: 85px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>First </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Battle " style="width: 89px; height: 23px;"><canvas width="106" height="22" style="width: 106px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Battle </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Experience " style="width: 147px; height: 23px;"><canvas width="164" height="22" style="width: 164px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Experience </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Event!" style="width: 81px; height: 23px;"><canvas width="98" height="22" style="width: 98px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Event!</cufontext></cufon></a></h2>
 
 					For 1 WHOLE WEEK – Starting 11/17/2011 5:30am UTC, the first victory of each day in each tank will receive x3 experience instead of x2! Make sure you all get your dailys for each tank and advance to your next tank that much sooner. Read all about it HERE <a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/" title="x3 First Battle Experience Event!">Continue »</a>
 		<div class="meta">By admin | 17 November 2011 | <a href="http://wot.is2.byuh.edu/staging/category/upcoming-events/" title="View all posts in Upcoming Events" rel="category tag">Upcoming Events</a> |  | <a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/#respond" class="comments-link" title="Comment on x3 First Battle Experience Event!">0 Comments</a>&nbsp;&nbsp;&nbsp;</div>
@@ -121,7 +118,6 @@
 
 
 
-		<h2><a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/" title="x3 First Battle Experience Event!"><cufon class="cufon cufon-canvas" alt="x3 " style="width: 35px; height: 23px;"><canvas width="52" height="22" style="width: 52px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>x3 </cufontext></cufon><cufon class="cufon cufon-canvas" alt="First " style="width: 68px; height: 23px;"><canvas width="85" height="22" style="width: 85px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>First </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Battle " style="width: 89px; height: 23px;"><canvas width="106" height="22" style="width: 106px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Battle </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Experience " style="width: 147px; height: 23px;"><canvas width="164" height="22" style="width: 164px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Experience </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Event!" style="width: 81px; height: 23px;"><canvas width="98" height="22" style="width: 98px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Event!</cufontext></cufon></a></h2>
 
 					For 1 WHOLE WEEK – Starting 11/17/2011 5:30am UTC, the first victory of each day in each tank will receive x3 experience instead of x2! Make sure you all get your dailys for each tank and advance to your next tank that much sooner. Read all about it HERE <a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/" title="x3 First Battle Experience Event!">Continue »</a>
 		<div class="meta">By admin | 17 November 2011 | <a href="http://wot.is2.byuh.edu/staging/category/upcoming-events/" title="View all posts in Upcoming Events" rel="category tag">Upcoming Events</a> |  | <a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/#respond" class="comments-link" title="Comment on x3 First Battle Experience Event!">0 Comments</a>&nbsp;&nbsp;&nbsp;</div>
@@ -152,7 +148,6 @@
 
 
 
-		<h2><a href="http://wot.is2.byuh.edu/staging/strategy/" title="Strategy"><cufon class="cufon cufon-canvas" alt="Strategy" style="width: 116px; height: 23px;"><canvas width="124" height="22" style="width: 124px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Strategy</cufontext></cufon></a></h2>
 
 					 <a href="http://wot.is2.byuh.edu/staging/strategy/" title="Strategy">Continue »</a>
 		<div class="meta">By admin | 15 November 2011 | <a href="http://wot.is2.byuh.edu/staging/category/upcoming-events/" title="View all posts in Upcoming Events" rel="category tag">Upcoming Events</a> |  | <a href="http://wot.is2.byuh.edu/staging/strategy/#respond" class="comments-link" title="Comment on Strategy">0 Comments</a>&nbsp;&nbsp;&nbsp;</div>
@@ -183,7 +178,6 @@
 
 
 
-		<h2><a href="http://wot.is2.byuh.edu/staging/hello-world/" title="WoTSTRAT"><cufon class="cufon cufon-canvas" alt="WoTSTRAT" style="width: 123px; height: 23px;"><canvas width="134" height="22" style="width: 134px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>WoTSTRAT</cufontext></cufon></a></h2>
 
 					 <a href="http://wot.is2.byuh.edu/staging/hello-world/" title="WoTSTRAT">Continue »</a>
 		<div class="meta">By admin | 14 November 2011 | <a href="http://wot.is2.byuh.edu/staging/category/upcoming-events/" title="View all posts in Upcoming Events" rel="category tag">Upcoming Events</a> |  | <a href="http://wot.is2.byuh.edu/staging/hello-world/#comments" class="comments-link" title="Comment on WoTSTRAT">1 Comment</a>&nbsp;&nbsp;&nbsp;</div>
@@ -222,7 +216,6 @@
 
 
 
-		<h2><a href="http://wot.is2.byuh.edu/staging/hello-world/" title="WoTSTRAT"><cufon class="cufon cufon-canvas" alt="WoTSTRAT" style="width: 123px; height: 23px;"><canvas width="134" height="22" style="width: 134px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>WoTSTRAT</cufontext></cufon></a></h2>
 
 					 <a href="http://wot.is2.byuh.edu/staging/hello-world/" title="WoTSTRAT">Continue »</a>
 		<div class="meta">By admin | 14 November 2011 | <a href="http://wot.is2.byuh.edu/staging/category/upcoming-events/" title="View all posts in Upcoming Events" rel="category tag">Upcoming Events</a> |  | <a href="http://wot.is2.byuh.edu/staging/hello-world/#comments" class="comments-link" title="Comment on WoTSTRAT">1 Comment</a>&nbsp;&nbsp;&nbsp;</div>
@@ -253,7 +246,6 @@
 
 
 
-		<h2><a href="http://wot.is2.byuh.edu/staging/strategy/" title="Strategy"><cufon class="cufon cufon-canvas" alt="Strategy" style="width: 116px; height: 23px;"><canvas width="124" height="22" style="width: 124px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Strategy</cufontext></cufon></a></h2>
 
 					 <a href="http://wot.is2.byuh.edu/staging/strategy/" title="Strategy">Continue »</a>
 		<div class="meta">By admin | 15 November 2011 | <a href="http://wot.is2.byuh.edu/staging/category/upcoming-events/" title="View all posts in Upcoming Events" rel="category tag">Upcoming Events</a> |  | <a href="http://wot.is2.byuh.edu/staging/strategy/#respond" class="comments-link" title="Comment on Strategy">0 Comments</a>&nbsp;&nbsp;&nbsp;</div>
@@ -273,7 +265,6 @@
 
 
 
-		<h2><a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/" title="x3 First Battle Experience Event!"><cufon class="cufon cufon-canvas" alt="x3 " style="width: 35px; height: 23px;"><canvas width="52" height="22" style="width: 52px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>x3 </cufontext></cufon><cufon class="cufon cufon-canvas" alt="First " style="width: 68px; height: 23px;"><canvas width="85" height="22" style="width: 85px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>First </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Battle " style="width: 89px; height: 23px;"><canvas width="106" height="22" style="width: 106px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Battle </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Experience " style="width: 147px; height: 23px;"><canvas width="164" height="22" style="width: 164px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Experience </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Event!" style="width: 81px; height: 23px;"><canvas width="98" height="22" style="width: 98px; height: 22px; top: 1px; left: 0px;"></canvas><cufontext>Event!</cufontext></cufon></a></h2>
 
 					For 1 WHOLE WEEK – Starting 11/17/2011 5:30am UTC, the first victory of each day in each tank will receive x3 experience instead of x2! Make sure you all get your dailys for each tank and advance to your next tank that much sooner. Read all about it HERE <a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/" title="x3 First Battle Experience Event!">Continue »</a>
 		<div class="meta">By admin | 17 November 2011 | <a href="http://wot.is2.byuh.edu/staging/category/upcoming-events/" title="View all posts in Upcoming Events" rel="category tag">Upcoming Events</a> |  | <a href="http://wot.is2.byuh.edu/staging/x3-first-battle-experience-event/#respond" class="comments-link" title="Comment on x3 First Battle Experience Event!">0 Comments</a>&nbsp;&nbsp;&nbsp;</div>
