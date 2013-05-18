@@ -1,23 +1,23 @@
 <?php
-//mysql_connect("localhost", "wot_admin", "poop");
-//mysql_select_db("wot_data");
-mysql_connect("us-cdbr-azure-northcentral-a.cleardb.com", "bf440d47033236", "4c96486f");
-mysql_select_db("wotdb");
+mysql_connect("localhost", "wot_admin", "poop");
+mysql_select_db("wot_data");
+//mysql_connect("us-cdbr-azure-northcentral-a.cleardb.com", "bf440d47033236", "4c96486f");
+//mysql_select_db("wotdb");
 
 include_once('../simple_html_dom.php');
 
 $url = 'http://wiki.worldoftanks.com';
 $html = file_get_html($url);
-
-//$nation = $html->find('#By_Nation', 0)->parent()->parent()->parent()->find('.NavContent a', 5);
-scrapeNation($nation);
-
-$tank_name = 'M10_Wolverine';
-scrapeTank($tank_name);
-
+$nations = $html->find('#By_Nation', 0)->parent()->parent()->parent()->find('.NavContent a',5);
 //foreach ($nations as $nation){
-//    scrapeNation($nation);
+//    echo 'scraping: '.$nations->href;
+    scrapeNation($nations);
 //}
+
+//$tank_name = '/M4_Sherman';
+//scrapeTank($tank_name);
+
+
 
 /*--------------------------------------*/
 
@@ -36,26 +36,24 @@ function scrapeNation($nation_link)
 
     $nation_html = file_get_html($nation_url);
     
-    //$tank_list = '/T1_Cunningham/M2_Light_Tank/T2_Light_Tank/T1E6/M3_Stuart/M22_Locust/MTLS-1G14/M5_Stuart/M24_Chaffee/T21/T71/T2_Medium_Tank/M2_Medium_Tank/M3_Lee/M4_Sherman/M7/Ram-II/M4A2E4/M4A3E2_Sherman_Jumbo/M4A3E8_Sherman/T20/M26_Pershing/T26E4_Super_Pershing';
+    $tank_list = 'MS-1/T-26/BT-2/T-60/Tetrarch/T-46/BT-7/T-70/T-127/BT-SV/M3_Light/T-50/A-20/T-80/Valentine_II/T-50-2/T-28/A-32/T-34/Matilda_IV/T-34-85/KV-13/T-43/T-44/T-54/T-62A/KV-1';
     
     $been_scraped = explode('/', $tank_list);
     foreach ($nation_html->find('.NavFrame a') as $tank_link){
-        echo $tank_link->href."<br>";
-        
         $tank_name = str_replace('/', '', $tank_link->href);
         if(!in_array($tank_name, $been_scraped)){
             if($tank_link->class == 'image') continue;
-            scrapeTank($tank_name);
+            echo $tank_link->href;
+            scrapeTank($tank_link->href);
         }
-        
-        echo $tank_link->href;
     }
+    echo '<br>Successful Scrape of '.$nation_link->href;
 }
 
 function scrapeTank($tank_name)
 {
-    if($tank_link->href == '/T23') return;
-    $url = 'http://wiki.worldoftanks.com/'.$tank_name;
+    if($tank_name == '/T23' || $tank_name == '/AT_15A') return;
+    $url = 'http://wiki.worldoftanks.com'.$tank_name;
     $html = file_get_html($url);
     
     $tank = new Tank(parseTank($html));
@@ -66,7 +64,7 @@ function scrapeTank($tank_name)
     
     $tank->generateSqlAndInsert();
     
-    echo $tank->getName().' processed successfully!'.'<br>';
+//    echo $tank->getName().' processed successfully!'.'<br>';
     
     $html->__destruct();
     $tank->__destruct();
@@ -106,6 +104,9 @@ function getDataTables($moduleTables)
                 }
                 $row_name = $columns[$i++];
                 $row[$row_name] = $td->plaintext;
+                if($row_name == 'Damage' || $row_name == 'Penetration'){
+                    $row[$row_name] = $td->innertext;
+                }
             }
             $table_object[$j++] = $row;
         }
@@ -305,18 +306,37 @@ function parseGun($obj)
                             break;
                     case 'Damage':
                             //110/110/175 HP
-                            //var_dump($obj[$prop]);
-                            $values = processTriplet($obj[$prop]);
-                            $obj['damage_ap'] = $values[0];
-                            $obj['damage_gold'] = $values[1] ? $values[1] : 0;
-                            $obj['damage_he'] = $values[2] ? $values[2] : 0;
+                            $td = str_get_html($obj[$prop]);
+                            $text = $td->plaintext;
+                            $values = processTriplet($text);
+                            $i = 0;
+                            foreach($td->find('span') as $span){
+                                $title = $span->getAttribute('title');
+                                if($title == 'AP'){
+                                    $obj['damage_ap'] = $values[$i++];
+                                } else if($title == 'HE'){
+                                    $obj['damage_he'] = $values[$i++];
+                                } else if($title != ''){
+                                    $obj['damage_gold'] = $values[$i++];
+                                }
+                            }
                             break;
                     case 'Penetration':
                             //96/143/38 mm
-                            $values = processTriplet($obj[$prop]);
-                            $obj['pen_ap'] = $values[0];
-                            $obj['pen_gold'] = $values[1] ? $values[1] : 0;
-                            $obj['pen_he'] = $values[2] ? $values[2] : 0;
+                            $td = str_get_html($obj[$prop]);
+                            $text = $td->plaintext;
+                            $values = processTriplet($text);
+                            $i = 0;
+                            foreach($td->find('span') as $span){
+                                $title = $span->getAttribute('title');
+                                if($title == 'AP'){
+                                    $obj['pen_ap'] = $values[$i++];
+                                } else if($title == 'HE'){
+                                    $obj['pen_he'] = $values[$i++];
+                                } else if($title != ''){
+                                    $obj['pen_gold'] = $values[$i++];
+                                }
+                            }
                             break;
                     case 'Shell Price':
                             //56 /7 /56

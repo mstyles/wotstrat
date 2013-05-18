@@ -13,21 +13,21 @@ class Gun extends Module
     
     protected $depression;
     
-    protected $damage_ap;
+    protected $damage_ap = 0;
     
-    protected $damage_gold;
+    protected $damage_gold = 0;
     
     protected $damage_he = 0;
     
-    protected $pen_ap;
+    protected $pen_ap = 0;
     
-    protected $pen_gold;
+    protected $pen_gold = 0;
     
     protected $pen_he = 0;
     
-    protected $price_ap;
+    protected $price_ap = 0;
     
-    protected $price_gold;
+    protected $price_gold = 0;
     
     protected $price_he = 0;
     
