@@ -6,13 +6,16 @@ mysql_select_db("wot_data");
 
 include_once('../simple_html_dom.php');
 
+ini_set('memory_limit','128M');
+ini_set('max_execution_time', 600);
+
 $url = 'http://wiki.worldoftanks.com';
 $html = file_get_html($url);
-$nations = $html->find('#By_Nation', 0)->parent()->parent()->parent()->find('.NavContent a',5);
-//foreach ($nations as $nation){
+$nations = $html->find('#By_Nation', 0)->parent()->parent()->parent()->find('.NavContent a');
+foreach ($nations as $nation){
 //    echo 'scraping: '.$nations->href;
-    scrapeNation($nations);
-//}
+    scrapeNation($nation);
+}
 
 //$tank_name = '/M4_Sherman';
 //scrapeTank($tank_name);
