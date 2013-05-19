@@ -2,11 +2,11 @@
 	-decimal points in gun elevation (AT 8)
 	-M7 Priest has no health?
 
--auto loader stats?
-
 -properly handle 360 degree gun arc
 
 -rows break if any cell has '--' ?
+
+-auto loader stats?
 
 -Mark premium tanks
 

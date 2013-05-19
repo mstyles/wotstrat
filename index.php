@@ -10,20 +10,6 @@ require_once('header.php');
 
 </div>
 <!--End Main Content-->
-
-<!--Begin Sidebar-->
-<div id="sidebar">
-
-
-
-
-</div>
-<!--End Sidebar-->
-
-
 </div>
 <!--End Content Wrapper-->
-
-</div>
-<!--End Container-->
 <?php require_once('footer.php') ?>

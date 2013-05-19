@@ -1,5 +1,4 @@
-var timer = 0,
-column_count = 0,
+var column_count = 0,
 tank_num = 0,
 inverse_stats = [
     'row_aim_time',
@@ -9,12 +8,6 @@ current_tanks = [],
 TURRETED_ONLY = 1,
 NON_TURRETED_ONLY = 0,
 BOTH = -1;
-
-incrementTimer = function()
-{
-    $('#counter').text(timer);
-    timer++;
-}
 
 compareStatsStandard = function(row)
 {
@@ -155,6 +148,7 @@ loadTankStats = function(tank_data)
         updateCell('row_gun_traverse', '--');
     } else {
         updateCell('row_view_range', tank_data['view_range']);
+        updateCell('row_health', tank_data.hp_elite);
         loadBlankTurretStats();
         var gun_arc = formatDuo([
             tank_data.gun_arc_left,
@@ -486,19 +480,6 @@ function convertRomanNum(num)
 $(function(){
     appendColumn();
     appendColumn();
-
-    $('#scraper').on('click', function(){
-        $('#content').html('');
-        $('#loading').show();
-        incrementTimer();
-        var timer_set = setInterval(incrementTimer, 1000);
-        $.post('main.php', function(data, status, jq){
-            $('#loading').hide();
-           $('#content').html(data);
-           timer = 0;
-            clearInterval(timer_set);
-        });
-    })
 
     $('body').on('change', '.tank_select', function(){
         tank_num = parseInt($(this).attr('id').split('_')[2]);

@@ -1,3 +1,5 @@
+</div>
+<!--End Container-->
 <div class="clear"></div>
 <!--Begin Footer-->
 <div id="footer" class="pngfix">
@@ -54,8 +56,6 @@
 <div class="ppt" style="top: 454.5px; left: 921.5px;"></div>
 <script src='js/jquery-2.0.0.min.js'></script>
 <script src='js/wotstrat.js'></script>
-<script type="text/javascript" src="js/Sansation_400-Sansation_700.font.js"></script>
-<script type="text/javascript">Cufon.replace('h1,h2,h3,h4,h5,h6,#nav li ul a', {hover: true});</script>
 <!--<script type="text/javascript" src="js/jquery.tools.min.js"></script>-->
 <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
@@ -67,6 +67,5 @@
 //	jQuery('#fadeslider').s3Slider({timeOut: 4000});
 //});
 </script>
-<script type="text/javascript"> Cufon.now(); </script>
 </body>
 </html>
