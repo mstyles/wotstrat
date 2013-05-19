@@ -499,7 +499,7 @@ $(function(){
             clearInterval(timer_set);
         });
     })
-    
+
     $('body').on('change', '.tank_select', function(){
         tank_num = parseInt($(this).attr('id').split('_')[2]);
         var id = $(this).val();

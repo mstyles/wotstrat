@@ -4,21 +4,21 @@ mysql_select_db("wot_data");
 //mysql_connect("us-cdbr-azure-northcentral-a.cleardb.com", "bf440d47033236", "4c96486f");
 //mysql_select_db("wotdb");
 
-include_once('../simple_html_dom.php');
+require_once('simple_html_dom.php');
 
 ini_set('memory_limit','128M');
 ini_set('max_execution_time', 600);
 
-$url = 'http://wiki.worldoftanks.com';
-$html = file_get_html($url);
-$nations = $html->find('#By_Nation', 0)->parent()->parent()->parent()->find('.NavContent a');
-foreach ($nations as $nation){
+//$url = 'http://wiki.worldoftanks.com';
+//$html = file_get_html($url);
+//$nations = $html->find('#By_Nation', 0)->parent()->parent()->parent()->find('.NavContent a');
+//foreach ($nations as $nation){
 //    echo 'scraping: '.$nations->href;
-    scrapeNation($nation);
-}
+//    scrapeNation($nation);
+//}
 
-//$tank_name = '/M4_Sherman';
-//scrapeTank($tank_name);
+$tank_name = '/M4_Sherman';
+scrapeTank($tank_name);
 
 
 
@@ -46,7 +46,6 @@ function scrapeNation($nation_link)
         $tank_name = str_replace('/', '', $tank_link->href);
         if(!in_array($tank_name, $been_scraped)){
             if($tank_link->class == 'image') continue;
-            echo $tank_link->href;
             scrapeTank($tank_link->href);
         }
     }
@@ -56,6 +55,7 @@ function scrapeNation($nation_link)
 function scrapeTank($tank_name)
 {
     if($tank_name == '/T23' || $tank_name == '/AT_15A') return;
+    echo $tank_name;
     $url = 'http://wiki.worldoftanks.com'.$tank_name;
     $html = file_get_html($url);
     

@@ -1,16 +1,12 @@
 <?php 
-define('__ROOT__', dirname(dirname(__FILE__))); 
-require_once(__ROOT__.'/wotstrat/header.php');
+require_once('header.php');
 ?>
 <!--Begin Content-->
 <div id="content-wrapper-inner">
 <div id="main-content">
-<h1 class="page-title">
-</h1>
-<h2>
-</h2>
+<h1 class="page-title">Tank Vs. Tank</h1>
 
-<?php require_once(__ROOT__.'/wotstrat/compare.php');?>
+<?php require_once('compare.php');?>
 
 </div>
 <!--End Main Content-->
@@ -30,4 +26,4 @@ require_once(__ROOT__.'/wotstrat/header.php');
 
 </div>
 <!--End Container-->
-<?php require_once(__ROOT__.'/wotstrat/footer.php') ?>
+<?php require_once('footer.php') ?>

@@ -73,24 +73,24 @@ function doThis() {
 /*************************** Tool Tips ***************************/
 
 
-jQuery(document).ready(function() { 
-    jQuery("#social-icons img[title]").tooltip({
-        tip: '.tooltip', 
-        effect: 'slide', 
-        position: "bottom left",         
-        offset: [15, 95] 
-    });
-});
+//jQuery(document).ready(function() {
+//    jQuery("#social-icons img[title]").tooltip({
+//        tip: '.tooltip',
+//        effect: 'slide',
+//        position: "bottom left",
+//        offset: [15, 95]
+//    });
+//});
 
 
 /*************************** Lightbox ***************************/
 
 
-jQuery(document).ready(function(){
-	jQuery("a[rel^='prettyPhoto']").prettyPhoto({
-		theme: 'facebook'
-	});
-});
+//jQuery(document).ready(function(){
+//	jQuery("a[rel^='prettyPhoto']").prettyPhoto({
+//		theme: 'facebook'
+//	});
+//});
 
 
 /*************************** Tabs ***************************/

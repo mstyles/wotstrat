@@ -2,12 +2,11 @@
     <tbody>
     <tr id="row_tank">
         <td>
-            <h2>Tank vs Tank</h2>
-            <input type='button' id='add_tank' value='Add Tank' />
+            <input type='button' id='add_tank' class='btn_controls' value='Add Tank' />
             <br>
-            <input type='button' id='remove_tank' value='Remove Tank' />
+            <input type='button' id='remove_tank' class='btn_controls' value='Remove Tank' />
             <br>
-            <input type='button' id='toggle_modules' value='Show Modules' />
+            <input type='button' id='toggle_modules' class='btn_controls' value='Show Modules' />
         </td>
     </tr>
     <tr id="row_name">

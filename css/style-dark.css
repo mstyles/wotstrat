@@ -11,7 +11,6 @@ background: #c0c0c0;
 }
 input[type="submit"], input[type="button"], input[type="reset"] {
 background: url(../images/submit_btn_dark.png) no-repeat;
-color: #000000;
 }
 input[type="submit"]:hover, input[type="reset"]:hover {
 color: #c0c0c0;

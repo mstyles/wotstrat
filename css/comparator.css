@@ -10,6 +10,11 @@ body{
     text-align: center;
 }
 
+.btn_controls{
+    margin-bottom: 5px;
+    color: white;
+}
+
 .turreted_field,
 .non_turreted_field{
     display: none;
