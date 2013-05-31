@@ -1,6 +1,6 @@
 -patch up data holes
 	-decimal points in gun elevation (AT 8)
-	-M7 Priest has no health?
+	-Duplicate M48 Pattons
 
 -properly handle 360 degree gun arc
 
@@ -9,6 +9,8 @@
 -auto loader stats?
 
 -Mark premium tanks
+
+-loading modal
 
 -Gun *options* respect turret selection
 	-when scraping, one gun group is 'elite' one is not

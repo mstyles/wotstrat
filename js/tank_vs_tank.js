@@ -365,6 +365,7 @@ submitFilters = function(target)
         'class'  : class_filters,
         'tier'   : tier_filters
     }
+    showLoading();
     $.post('AjaxHandler.php', data, function(options){
         console.log(options);
         options = JSON.parse(options);
@@ -377,6 +378,7 @@ submitFilters = function(target)
                 .attr('value', item['id'])
                 .text(item['name']));
         });
+        hideLoading();
     });
 }
 
@@ -477,6 +479,18 @@ function convertRomanNum(num)
     }
 }
 
+showLoading = function()
+{
+    $('body').css('cursor', 'progress');
+    $('#modal').show();
+}
+
+hideLoading = function()
+{
+    $('body').css('cursor', 'auto');
+    $('#modal').hide();
+}
+
 $(function(){
     appendColumn();
     appendColumn();
@@ -484,6 +498,7 @@ $(function(){
     $('body').on('change', '.tank_select', function(){
         tank_num = parseInt($(this).attr('id').split('_')[2]);
         var id = $(this).val();
+        showLoading();
         $.post('AjaxHandler.php', {action : 'loadTank', tank_id : id}, function(data, status, jq){
            var tank_data = JSON.parse(data);
            current_tanks[tank_num] = tank_data;
@@ -494,6 +509,7 @@ $(function(){
            setModuleOptions('engine', tank_data['engines']);
            setModuleOptions('radio', tank_data['radios']);
            compareAll();
+           hideLoading();
            switch(turretCheck()){
                case BOTH:
                    $('.non_turreted_field').show();

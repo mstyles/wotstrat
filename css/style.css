@@ -302,6 +302,7 @@ margin-left: -500px;
 #content-wrapper-outer {
 float: left;
 width: 1000px;
+min-height: 600px;
 }
 #content-wrapper-inner {
 float: left;
@@ -311,7 +312,6 @@ padding: 20px 30px;
 #main-content {
 float: left;
 position: relative;
-width: 600px;
 }
 #sidebar {
 float: right;
@@ -387,7 +387,6 @@ height: 100%;
 }
 .post-content {
 float: left;
-width: 480px;
 }
 .extended {
 width: 600px !important;

@@ -4,9 +4,12 @@
 <!--Begin Footer-->
 <div id="footer" class="pngfix">
     <ul id="footer-nav">
-        <li class="cat-item"><a href="/wotstrat">Home</a></li>
+        <li class="cat-item"><a href="home.php">Home</a></li>
         <li class="page_item page-item-2 current_page_item">
-            <a href="/wotstrat">Tank Vs. Tank</a>
+            <a href="index.php">Tank Vs. Tank</a>
+        </li>
+        <li class="cat-item">
+            <a href="#">Contact</a>
         </li>
     </ul>
     <div class="right"></div>
@@ -54,8 +57,9 @@
 </div>
 <div class="pp_overlay" style="opacity: 0; height: 1934px;"></div>
 <div class="ppt" style="top: 454.5px; left: 921.5px;"></div>
+<div id='modal'>
 <script src='js/jquery-2.0.0.min.js'></script>
-<script src='js/wotstrat.js'></script>
+<script src='js/tank_vs_tank.js'></script>
 <!--<script type="text/javascript" src="js/jquery.tools.min.js"></script>-->
 <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
@@ -67,5 +71,10 @@
 //	jQuery('#fadeslider').s3Slider({timeOut: 4000});
 //});
 </script>
+<script type="text/javascript">
+  $(function() {
+    $("#"+page+"_tab").addClass('current_page_item');
+  });
+  </script>
 </body>
 </html>
