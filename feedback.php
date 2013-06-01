@@ -1,4 +1,7 @@
 <?php
+require_once 'helpers.php';
+
+connectDb();
 
 if(isset($_REQUEST['email_address'])){
     $email_address = filter_var($_REQUEST['email_address'], FILTER_SANITIZE_EMAIL);
@@ -12,13 +15,14 @@ $mail_to = 'mstyleshk@gmail.com';
 $subject = 'WotStrat '.$type;
 $message  = 'From: ' . $email_address . "\n\n";
 
-if($type == 'Suggestion'){
+if($type == 'suggestion'){
     if(isset($_REQUEST['feedback'])){
         $whole_feedback = filter_var($_REQUEST['feedback'], FILTER_SANITIZE_STRING);
+        $whole_feedback = html_entity_decode($whole_feedback, ENT_QUOTES);
         $feedback = wordwrap($whole_feedback);
     }
     $message .= "Message:\n" . $feedback . "\n\n";
-} else if($type == 'Bug'){
+} else if($type == 'bug'){
     if(isset($_REQUEST['bugged_tank'])){
         $bugged_tank = filter_var($_REQUEST['bugged_tank'], FILTER_SANITIZE_STRING);
     }
@@ -30,5 +34,17 @@ if($type == 'Suggestion'){
 }
 
 mail($mail_to, $subject, $message);
+
+$sql = "
+    INSERT INTO feedback
+    SET
+        type = '$type',
+        email_from = '$email_address',
+        message = '$whole_feedback',
+        bugged_tank = '$bugged_tank',
+        bugged_attr = '$bugged_attribute'
+";
+
+queryInsert($sql);
 echo 'Thanks!';
 ?>

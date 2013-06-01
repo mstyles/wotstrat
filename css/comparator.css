@@ -69,7 +69,7 @@ body{
 
 #report_link{
     text-decoration: underline;
-    color: red;
+    color: maroon;
     cursor: pointer;
 }
 
@@ -80,9 +80,12 @@ body{
     padding: 10px;
     border: 2px solid red;
     -moz-border-radius: 5px;
-    -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+}
+
+#cancel_btn{
+    margin-right: 40px;
 }
 
 .usa{ background: url('../images/usa.png');}

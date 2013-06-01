@@ -512,6 +512,11 @@ submitForm = function()
         $('#submit_btn').after('<span style="color: green">'+data+'</span>');
         setTimeout(function(){
             $('#feedback_pop').hide();
+            $('#submit_btn').next().remove();
+            $('#email_address').val('');
+            $('#feedback').val('');
+            $('#bugged_attribute').val('');
+            $('#bugged_tank').val('');
         }, 1000);
     })
 }
@@ -616,5 +621,9 @@ $(function(){
 
     $('#submit_btn').on('click', function(){
         submitForm();
+    })
+
+    $('#cancel_btn').on('click', function(){
+        $('#feedback_pop').hide();
     })
 });

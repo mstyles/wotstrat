@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 
-<title>WOTStrat</title>
-
+<title>WotStrat</title>
+<link rel="shortcut icon" href="images/wotstrat.ico">
 <link rel="stylesheet" href="css/comparator.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen">

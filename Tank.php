@@ -1,4 +1,5 @@
 <?php
+require_once 'helpers.php';
 class Tank
 {
     private $id;
@@ -80,33 +81,33 @@ class Tank
         
         $sql = $this->toSql();
         
-        $this->id = $this->queryInsert($sql);
+        $this->id = queryInsert($sql);
         
         $gun_names = array();
         foreach ($this->guns as $gun){
             
             $sql = $gun->toSql($this->id);
-            $this->queryInsert($sql);
+            queryInsert($sql);
         }
         
         foreach ($this->turrets as $turret){
             $sql = $turret->toSql($this->id);
-            $this->queryInsert($sql);
+            queryInsert($sql);
         }
         
         foreach ($this->suspensions as $suspension){
             $sql = $suspension->toSql($this->id);
-            $this->queryInsert($sql);
+            queryInsert($sql);
         }
         
         foreach ($this->engines as $engine){
             $sql = $engine->toSql($this->id);
-            $this->queryInsert($sql);
+            queryInsert($sql);
         }
         
         foreach ($this->radios as $radio){
             $sql = $radio->toSql($this->id);
-            $this->queryInsert($sql);
+            queryInsert($sql);
         }
         
     }
@@ -163,46 +164,6 @@ class Tank
     function toJson()
     {
         return json_encode($this);
-    }
-    
-    function queryInsert($sql)
-    {
-        $results = mysql_query($sql);
-        if (!$results){
-            echo mysql_error();
-            echo $sql;
-            exit();
-        } else {
-            return mysql_insert_id();
-        }
-    }
-    
-    function queryOneRow($sql)
-    {
-        $result = mysql_query($sql);
-        if (!$result){
-            echo mysql_error();
-            echo $sql;
-            exit();
-        } else {
-            return mysql_fetch_assoc($result);
-        }
-    }
-    
-    function queryAll($sql)
-    {
-        $result = mysql_query($sql);
-        if (!$result){
-            echo mysql_error();
-            echo $sql;
-            exit();
-        } else {
-            $results = array();
-            while($row = mysql_fetch_array($result)){
-                $results[] = $row;   
-            }
-            return $results;
-        }
     }
     
     function addGun($gun)
@@ -394,7 +355,7 @@ class Tank
             ORDER BY tier, xp_cost
         ";
         
-        $guns = $this->queryAll($sql);
+        $guns = queryAll($sql);
         
         foreach($guns as $gun){
             $gun = new Gun($gun);
@@ -411,7 +372,7 @@ class Tank
             ORDER BY tier, xp_cost
         ";
         
-        $engines = $this->queryAll($sql);
+        $engines = queryAll($sql);
         
         foreach($engines as $engine){
             $engine = new Engine($engine);
@@ -428,7 +389,7 @@ class Tank
             ORDER BY tier, xp_cost
         ";
         
-        $turrets = $this->queryAll($sql);
+        $turrets = queryAll($sql);
         
         foreach($turrets as $turret){
             $turret = new Turret($turret);
@@ -445,7 +406,7 @@ class Tank
             ORDER BY tier, xp_cost
         ";
         
-        $suspensions = $this->queryAll($sql);
+        $suspensions = queryAll($sql);
         
         foreach($suspensions as $suspension){
             $suspension = new Suspension($suspension);
@@ -462,7 +423,7 @@ class Tank
             ORDER BY tier, xp_cost
         ";
         
-        $radios = $this->queryAll($sql);
+        $radios = queryAll($sql);
         
         foreach($radios as $radio){
             $radio = new Radio($radio);

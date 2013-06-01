@@ -2,9 +2,13 @@ body {
 color: #c0c0c0;
 }
 
-input, textarea, select {
+textarea, select {
 background: #808080;
 color: #202020;
+}
+input{
+background: #808080;
+color: #FFFFFF;
 }
 input:focus, textarea:focus, select:focus {
 background: #c0c0c0;
@@ -17,6 +21,9 @@ background: url(../images/submit_btn_dark.png) no-repeat;
 }
 input[type="submit"]:hover, input[type="reset"]:hover {
 color: #c0c0c0;
+}
+#searchbar{
+    color: #202020;
 }
 blockquote {
 background: transparent url(../images/bq_dark.png) left top no-repeat;

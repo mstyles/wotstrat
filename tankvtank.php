@@ -151,7 +151,10 @@ require_once('header.php');
             </td>
         </tr>
     </table>
-    <input type="hidden" id="feedback_type" value="Bug"/>
-    <div align="center"><input type="submit" id="submit_btn" value="submit" /></div>
+    <input type="hidden" id="feedback_type" value="bug"/>
+    <div align="center">
+        <input type="button" id="cancel_btn" value="cancel" />
+        <input type="button" id="submit_btn" value="submit" />
+    </div>
 </div>
 <?php require_once('footer.php') ?>

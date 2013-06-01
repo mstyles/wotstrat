@@ -8,7 +8,7 @@ echo '<!--'.php_uname('n').'-->';
 <!--Begin Content-->
 <div id="content-wrapper-inner">
 <div id="main-content">
-<p>Have a suggestion? Let me know!</p>
+<p>Have some feedback or a suggestion? Let me know!</p>
 <table border="0">
     <tr>
         <td>
@@ -27,7 +27,7 @@ echo '<!--'.php_uname('n').'-->';
         </td>
     </tr>
 </table>
-<input type="hidden" id="feedback_type" value="Suggestion"/>
+<input type="hidden" id="feedback_type" value="suggestion"/>
 <input type="submit" id="submit_btn" value="submit" />
 </div>
 <!--End Main Content-->
