@@ -491,6 +491,31 @@ hideLoading = function()
     $('#modal').hide();
 }
 
+submitForm = function()
+{
+    var email = $('#email_address').val();
+    var feedback = $('#feedback').val();
+    var type = $('#feedback_type').val();
+    var bugged_attribute = $('#bugged_attribute').val();
+    var bugged_tank = $('#bugged_tank').val();
+    var url = 'feedback.php';
+    var data = {
+        email_address : email,
+        feedback : feedback,
+        bugged_attribute : bugged_attribute,
+        bugged_tank : bugged_tank,
+        type : type
+    }
+    console.log(data);
+    console.log(url);
+    $.post(url, data, function(data){
+        $('#submit_btn').after('<span style="color: green">'+data+'</span>');
+        setTimeout(function(){
+            $('#feedback_pop').hide();
+        }, 1000);
+    })
+}
+
 $(function(){
     appendColumn();
     appendColumn();
@@ -537,6 +562,7 @@ $(function(){
 
     $('#remove_tank').on('click', function(){
         removeColumn();
+        compareAll();
         if(column_count === 1) $(this).hide();
         $('#add_tank').show();
     })
@@ -582,5 +608,13 @@ $(function(){
         tank_num = $(this).closest('td').index()-1;
         loadRadioStats(current_tanks[tank_num].radios[$(this).val()]);
         compareAll();
+    })
+
+    $('#report_link').on('click', function(){
+        $('#feedback_pop').show();
+    })
+
+    $('#submit_btn').on('click', function(){
+        submitForm();
     })
 });

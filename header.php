@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/style-dark.css" type="text/css" media="screen">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" media="screen">
 <style type="text/css">
 
 body {
@@ -52,18 +51,18 @@ width: 640px;
     <!--Begin Header-->
     <div id="header" class="pngfix">
         <div id="logo">
-            <a href="/wotstrat">
+            <a href="index.php">
                 <img src="images/logo_dark.png" class="pngfix" alt="">
             </a>
         </div>
         <div id="nav-container">
             <ul id="nav">
-                <li id="home_tab" class="cat-item"><a href="home.php">Home</a></li>
+                <li id="home_tab" class="cat-item"><a href="index.php">Home</a></li>
                 <li id="tankvtank_tab" class="page_item page-item-2">
-                    <a href="index.php">Tank Vs. Tank</a>
+                    <a href="tankvtank.php">Tank Vs. Tank</a>
                 </li>
                 <li id="contact_tab" class="cat-item">
-                    <a href="#">Contact</a>
+                    <a href="contact.php">Contact</a>
                 </li>
             </ul>
         </div>

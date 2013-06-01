@@ -9,6 +9,9 @@ color: #202020;
 input:focus, textarea:focus, select:focus {
 background: #c0c0c0;
 }
+input:hover, textarea:hover, select:hover {
+background: #c0c0c0;
+}
 input[type="submit"], input[type="button"], input[type="reset"] {
 background: url(../images/submit_btn_dark.png) no-repeat;
 }

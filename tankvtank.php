@@ -1,3 +1,14 @@
+<?php
+require_once('header.php');
+?>
+<script type="text/javascript">
+    page = 'tankvtank';
+</script>
+<!--Begin Content-->
+<div id="content-wrapper-inner">
+<div id="main-content">
+<h1 class="page-title">Tank Vs. Tank</h1>
+<span>Spot something wrong? <span id="report_link">Report it!</span></span>
 <table id='comparison_table' border="1">
     <tbody>
     <tr id="row_tank">
@@ -110,3 +121,37 @@
     </tr>
     </tbody>
 </table>
+
+</div>
+<!--End Main Content-->
+</div>
+<!--End Content Wrapper-->
+<div id="feedback_pop">
+    <table border="0">
+        <tr>
+            <td>
+                <span>Email:</span>
+            </td>
+            <td colspan="3">
+                <input type="text" id="email_address"/><span style="color:gold">*optional</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Tank:</span>
+            </td>
+            <td>
+                <input type="text" id="bugged_tank"/>
+            </td>
+            <td>
+                <span>Attribute:</span>
+            </td>
+            <td>
+                <input type="text" id="bugged_attribute"/>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" id="feedback_type" value="Bug"/>
+    <div align="center"><input type="submit" id="submit_btn" value="submit" /></div>
+</div>
+<?php require_once('footer.php') ?>

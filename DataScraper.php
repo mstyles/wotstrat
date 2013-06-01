@@ -1,8 +1,11 @@
 <?php
-//mysql_connect("localhost", "wot_admin", "poop");
-//mysql_select_db("wot_data");
-mysql_connect("us-cdbr-azure-northcentral-a.cleardb.com", "bf440d47033236", "4c96486f");
-mysql_select_db("wotdb");
+if(php_uname('n') == 'is2.byuh.edu'){
+    mysql_connect("localhost", "wot_admin", "poop");
+    mysql_select_db("wot_data");
+} else{
+    mysql_connect("us-cdbr-azure-northcentral-a.cleardb.com", "bf440d47033236", "4c96486f");
+    mysql_select_db("wotdb");
+}
 
 require_once('simple_html_dom.php');
 

@@ -67,6 +67,24 @@ body{
     display: none;
 }
 
+#report_link{
+    text-decoration: underline;
+    color: red;
+    cursor: pointer;
+}
+
+#feedback_pop{
+    display: none;
+    position: absolute;
+    background: lightgray;
+    padding: 10px;
+    border: 2px solid red;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
 .usa{ background: url('../images/usa.png');}
 
 .china{ background: url('../images/china.png');}

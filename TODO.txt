@@ -10,7 +10,7 @@
 
 -Mark premium tanks
 
--loading modal
+-loading modal gif
 
 -Gun *options* respect turret selection
 	-when scraping, one gun group is 'elite' one is not
