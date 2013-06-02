@@ -1,15 +1,5 @@
 <?php
-require_once 'helpers.php';
-
-connectDb();
-
-$sql = "
-    INSERT INTO feedback
-    SET
-        type = 'test',
-        email_from = 'test',
-        message = 'test'
-";
-
-queryInsert($sql);
+    $foo = 'you&#39;re my friend!!! &#34;don&#39;';
+    $bar = html_entity_decode($foo);
+    echo $bar;
 ?>
